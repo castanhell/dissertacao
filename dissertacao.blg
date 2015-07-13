@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/dev/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: dissertacao.aux
+The style file: brazil.bst
+Database file #1: referencias.bib
+Warning--empty journal in ropke2005heuristic
+You've used 30 entries,
+            2118 wiz_defined-function locations,
+            676 strings with 7597 characters,
+and the built_in function-call counts, 8475 in all, are:
+= -- 852
+> -- 322
+< -- 4
++ -- 134
+- -- 100
+* -- 517
+:= -- 1424
+add.period$ -- 91
+call.type$ -- 30
+change.case$ -- 139
+chr.to.int$ -- 0
+cite$ -- 31
+duplicate$ -- 327
+empty$ -- 730
+format.name$ -- 100
+if$ -- 1787
+int.to.chr$ -- 0
+int.to.str$ -- 30
+missing$ -- 23
+newline$ -- 152
+num.names$ -- 60
+pop$ -- 160
+preamble$ -- 1
+purify$ -- 110
+quote$ -- 0
+skip$ -- 245
+stack$ -- 0
+substring$ -- 485
+swap$ -- 55
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 114
+warning$ -- 1
+while$ -- 89
+width$ -- 32
+write$ -- 326
+(There was 1 warning)

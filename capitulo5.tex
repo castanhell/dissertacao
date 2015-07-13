@@ -1,0 +1,23 @@
+\chapter{Considerações Finais}
+
+Apresentamos neste trabalho as atividades desenvolvidas e a proposta de continuidade de trabalho do mestrado. Resumimos nesta seção um pouco do que falamos em cada um dos capítulos deste trabalho e fazemos algumas considerações sobre cada um deles.
+
+Vimos no capítulo \ref{chap:defs} as definições de PTAS, programação dinâmica e dos problemas que tratamos. Apresentamos uma definição um pouco mais formal de programação dinâmica, algo que em geral é omitida na literatura de algoritmos de aproximação. Ademais, consideramos no início desta proposta de dissertação estudar problemas de programação dinâmica aproximada antes de escolhermos estudar esquemas de aproximação polinomial, chegando a inclusive estudar parte introdutória do livro de Dmitri Bertsekas , fornecido em \cite{Bertsekas}. Parte das definições foram aproveitadas deste trabalho.
+
+No capítulo \ref{chap:algs} apresentamos esquemas de aproximação polinomial para os problemas da mochila, escalonamento de tarefas em máquinas paralelas, empacotamento e caixeiro viajante euclidiano. Estes algoritmos foram fruto de diversos trabalhos, sendo que baseamos as descrições destes algoritmos no livro de Williamson e Shimoys \cite{Williamson}.
+
+No capítulo \ref{PropostaDeMestrado} apresentamos a proposta de continuidade do trabalho. Escolhemos estudar grafos de disco unitário devido à descoberta recente de alguns esquemas de aproximação polinomial para estes algoritmos. O assunto é referenciado também em alguns trabalhos de \cite{Huang}, \cite{gupta} e \cite{li} para tratar de cobertura de redes de sensores, algo que empresas como o Google \cite{googleloon} estão pesquisando para tentar levar \textit{internet} à regiões remotas do planeta. 
+
+Por simplicidade e redução de tempo omitimos alguns outros itens interessantes no estudo de problemas de aproximação, como a das classes \textit{PTAS} e \textit{APX}, que resumem a aproximalidade de problemas \cite{ComplexityZoo}, definidas abaixo:
+
+\begin{definition}[APX]
+Um problema $P$ pertence à $APX$ se há uma $\alpha$-aproximação para P, sendo $\alpha$ uma constante.
+\end{definition}
+
+\begin{definition}[PTAS]
+Um problema $P$ pertence à $PTAS$ se há um esquema de aproximação polinomial para $P$
+\end{definition}
+
+Embora não tenhamos dito anteriormente, o conceito de PTAS engloba classes de problemas que admitem aproximações polinomiais. Entretanto, algumas classes de problemas admitem apenas aproximações por um fator constante, como é o caso da classe \textit{APX}. Nestas, infelizmente é impossível obter um PTAS para um problema, mas é possível obter aproximações constantes, como o caso do problema \textit{MAX-3SAT} \cite{hastad}.
+
+Gostaríamos de falar mais sobre este além de outros tópicos que eventualmente estudamos e aprendemos enquanto fizemos este trabalho. Deixaremos isto para uma data futura.

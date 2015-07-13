@@ -1,0 +1,236 @@
+\chapter{Definições}
+\label{chap:defs}
+
+Neste capítulo apresentaremos a definição de algoritmos de aproximação (Definição \ref{sec:algAProximacao}), Esquemas de aproximação polinomial (Seção \ref{sec:ptas} ) e programação dinâmica (Seção \ref{sec:programacaoDinamica}). 
+
+Veremos também ao longo deste capítulo definições de problemas com soluções obtidas através de técnicas de PTAS e programação dinâmica.
+
+Estas definições são baseadas em \cite{Williamson}.
+
+\section{Algoritmos de aproximação}
+
+\label{sec:algAProximacao}
+
+\begin{definition}
+
+\label{definition:algAproximacao}
+
+Um algoritmo $\alpha$-aproximação para um problema de otimização é um algoritmo de tempo polinomial que, para todas as instâncias do problema, produz uma solução $\alpha$ vezes a solução ótima.
+
+\end{definition}
+
+Para um algoritmo $\alpha$-aproximação, chamamos de $\alpha$ a garantia de performance do algoritmo. Em \cite{Williamson} convenciona-se que em problemas de maximização o valor de $\alpha$ é inferior a 1 e em problemas de minimização, superior a 1.
+
+O estudo dos algoritmos de aproximação é vinculado a diversos objetivos: Estudo de problema de otimização, estudo matemático rigoroso das heurísticas associadas às soluções de problemas, estudo das métricas de dificuldade de solução dos algoritmos, dentre ouras. 
+
+Muitos problemas de otimização abordados atualmente são problemas $NP$-difíceis. Veremos que a partir de algoritmos de aproximação, é possível encontrar soluções próximas do valor ótimo com custos de tempo parametrizados em relação à $\alpha$-aproximação.
+
+Associada à definição de algoritmos de aproximação, veremos uma classe interessante destes. Os esquemas de aproximação polinomial.
+
+\section{Esquemas de aproximação polinomial}
+\label{sec:ptas}
+
+\begin{definition}
+
+Um esquema de aproximação polinomial é uma família de algoritmos ${A_\epsilon}$, onde, para cada $A_\epsilon$ é uma $(1 + \epsilon )$ aproximação para problemas de minimização e $(1 - \epsilon)$ para problemas de maximização.
+
+\end{definition}
+
+A definição de esquema de aproximação polinomial deriva do inglês \textit{Polynomial-time Approximation Scheme} (PTAS). Por simplicidade, adotaremos esta última sigla no restante deste documento.
+
+Muitos problemas possuem PTAS, como o problema da mochila e do Caixeiro Viajante Euclidiano. Entretanto, alguns problemas são tão difícieis que não há PTAS salvo se $P=NP$ \cite{alimonti2000some}.
+
+Veremos PTAS referentes a alguns problemas, os quais usam a técnica de programação dinâmica.
+
+\section{Programação dinâmica}
+\label{sec:programacaoDinamica}
+
+Programação dinâmica é uma técnica de otimização que transforma um problema complexo em uma sequência de sub-problemas \cite{Bradley}. Sua principal característica é a natureza multi-estágio de um procedimento de otimização.
+
+Com programação dinâmica, o que em geral queremos fazer é dividir um problema em um número razoável de subproblemas, onde razoável pode ser, por exemplo, $O(n^2)$ o tamanho da instância. A diferença entre esta abordagem e outra por divisão e conquista é a possibilidade de sobreposição entre estes subproblemas \cite{blum}.
+
+Apresentaremos programação dinâmica usando-a para resolver o problema da subsequência crescente máxima, extraído de \cite{feofiloff}.
+
+\subsection{O problema da subsequência crescente máxima}
+\label{subsec:sscm}
+
+Ilustraremos a técnica de programação dinâmica apresentando um algoritmo que resolve o problema da subsequência crescente máxima.
+
+Suponha que o vetor $A[1 \ldots n]$ é uma sequência de números naturais. Uma subsequência de $B[1 \ldots k]$ é o que sobra depois que um conjunto arbitrário de termos é apagado, ou seja, os elementos deste conjunto podem encontrar-se em qualquer posição dentro de $A$.
+
+Se o vetor $B[1 \ldots k]$ é uma subsequência crescente de $A[1 \ldots n]$ então teremos índices $i_1,i_2,\ldots,i_k$ tais que $1 < i_1 < i2 < \ldots < i_k \leq n$  de forma que $B[1] = A[i_1],  B[2] = A[i_2], \ldots ,  B[k] = A[i_k]$ .
+
+Uma subsequência crescente de $A[1 \ldots n]$ é máxima se não existe nenhuma outra mais longa.
+
+Definimos então o problema da subsequência crescente máxima.
+
+\begin{definition}[Problema da subsequência crescente máxima]
+Dado um vetor $A[1 \ldots n]$, determinar qual o tamanho de sua subsequência crescente máxima.
+\end{definition}
+
+O algoritmo $MaxSubsequenciaCrescente (A,n)$ resolve o problema da subsequência crescente máxima usando programação dinâmica.
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\Entrada{ $A[1 \ldots n]$, vetor de números naturais e $n$, índice de um item arbitrário de A }
+\Para{ $m \leftarrow 1$ até $n$}
+{
+    $c[m] \leftarrow 1$
+    
+    \Para{ $i \leftarrow m-1$ decrescendo até $1$ }{
+    \Se{$A[i] \leq A[m]$ e $c[i]+1 > c[m]$}
+    {
+        $c[m] \leftarrow c[i]+1$
+    }
+   }
+}
+
+\Retorna{$max(c[1 \ldots n])$}
+
+\caption{$MaxSubsequenciaCrescente (A,n$)}
+\label{alg:ssc}
+\end{algorithm}
+
+Provaremos que $MaxSubsequenciaCrescente (A,n)$ resolve o subsequência crescente máxima. Provaremos em seguida que este algoritmo executa em tempo $O( n ^ 2)$.
+
+\begin{teorema}
+
+Para um dado vetor $A[1 \ldots n]$, $MaxSubsequenciaCrescente$ encontra o tamanho subsequência crescente máxima.
+
+\end {teorema}
+
+\begin{proof}
+
+O seguinte invariante de laço é válido:
+
+\begin{itemize}
+\item $I_8$ : $c[m]$ retorna o tamanho da subsequência crescente máxima para um dado valor de m.
+\end{itemize}
+
+$c[m]$ inicia em um, o valor mínimo para qualquer subsequência crescente. Para $m \leftarrow k$, sendo $k$ um valor arbitrário $ 1 < k \leq n $, a linha $5$ verifica se $A[i] \leq A[k]$, indicando que é possível formar uma sequência crescente contendo $A[i]$ e $A[k]$, e o valor desta sequência é igual ao valor da sequência até $i$ mais um. Caso o valor de $c[i]+1$, ou seja, da nova sequência a partir de $i$ que inclui $k$ seja superior à sequência de $c[k]$ escolhemos esta. Estamos acumulando assim em $A[k]$ o valor da maior subsequência crescente máxima de 1 até $k$. Consequentemente, conforme aumentamos o valor de $k$, vamos acumulando em estados, o valor da subsequência crescente máxima para o $k$-ésimo elemento em um estado $c[k]$. Uma vez armazenado o estado, basta procurar ao longo de $c[1 \ldots n]$ aquele com maior valor e então encontramos o valor da subsequência crescente máxima.
+
+\end{proof}
+
+\begin{teorema}
+$MaxSubsequenciaCrescente$ executa em tempo $O(n^2)$, onde $n$ é o tamanho o vetor $A$.
+\end{teorema}
+
+\begin{proof}
+
+A tabela \ref{tab:nexecssc} apresenta as ordens de execução de cada linha (Seguindo a notação apresentada em \cite{feofiloffassintotica}). Observamos que as linhas de maior ordem estão na ordem de $n^2$. Somando os graus de cada linha (Como apresentado em \cite{janosiasymptoptic}) obtemos um algoritmo $O(n^2)$.
+
+\begin{table}[h]
+\centering
+\caption{Número de execuções por linha do algoritmo \ref{alg:ssc}}
+\label{tab:nexecssc}
+\begin{tabular}{|c|c|}
+\hline
+Linha & Número de execuções \\ \hline
+2 & $O(n)$   \\ \hline
+3 & $O(n)$   \\ \hline
+4 & $O(n^2)$ \\ \hline
+5 & $O(n^2)$ \\ \hline
+6 & $O(n^2)$  \\ \hline
+7 & $O(n^2)$ \\ \hline
+8 & $O(n^2)$ \\ \hline
+9 & $O(n)$ \\ \hline
+10 & $O(n)$ \\ \hline
+\end{tabular}
+\end{table}
+
+\end{proof}
+
+O algoritmo \ref{alg:ssc} é um exemplo de uso da técnica de programação dinâmica. Para a instância do problema instancia-se uma matriz de estados, neste caso $c[ 1 \ldots m]$. Cada estado $c[k]$ representa o maior caminho traçado entre $A[1] \rightarrow A[k]$. A solução para $A[1 \ldots n]$ é gerada sobrepondo as soluções de todos os subvetores $A[1 \ldots k]$, para $1 \leq k < n$.
+
+\subsection{Formalização de programação dinâmica}
+
+Após analisar o exemplo de um algoritmo que usa a técnica, apresentaremos uma definição formal da técnica, baseada em \cite{Bradley}.
+
+Observamos as seguintes características no algoritmo apresentado (Assim como nos demais que utilizam programação dinâmica):
+
+\begin{itemize}
+\item Estágios : Os problemas são divididos em múltiplos estágios, resolvidos sequencialmente, um por vez.
+\item Estados : Associado com cada estágio, há os \textit{estados} do processo, os quais fornecem informação necessária para saber quais as consequências de uma determinada decisão em ações futuras. No problema da subsequência crescente máxima os estados eram representados pelo vetor $c[m]$, que continha a maior subsequência crescente máxima para o vetor formado entre 1 e $m$.
+\item Otimização recursiva: Uso de otimização recusiva, chegando na solução para o problema de $n$ estágios resolvendo primeiro um problema de um estágio e sequencialmente incluindo um estágio por vez e resolvendo-os até que o valor ótimo seja encontrado.
+\end{itemize}
+
+A partir das ideias acima, apresentamos a equação de \textit{Bellmann}, falando apenas dela para problemas de maximização \cite{laibson}:
+
+\begin{equation}
+\label{equ:bellmann}
+v(x_t) = \sup_{x_{t+1} \in \Gamma(x_t)} { F(x_t,x_{t+1}) + \delta v (x_{t+1}) }, t \in [0,n]
+\end{equation}
+
+Onde:
+
+\begin{itemize}
+\item $x_t$ é o vetor de estados em um estágio (ou período de tempo) $t$.
+\item $F(x_t, x_{t+1})$ é o ganho para ir do estágio $t$ até o estágio $t+1$ a partir de $x_t$.
+\item $\Gamma(x_t)$ é o conjunto de todos os estados possíveis de serem criados a partir de $x_t$.
+\item $\delta$ é o fator de desconto, tipicamente usado na análise de problemas de finanças, onde há depreciação ($\delta \leq 1$).
+\item $\sup{}{}$ é a função supremo.
+\end{itemize}
+
+A função $v(x_t)$ retorna o valor ótimo do problema até o estágio $t$. Consequentemente $v(x_0)$ retorna a solução ótima do problema.
+
+A equação de \textit{Bellmann}, é também chamada de \textit{Equação da programação dinâmica}. Ela é uma equação funcional \cite{laibson}, pois resolvê-la envolve descobrir a função $v(x_t)$. 
+
+Estas equações funcionais podem ser resolvidas de diversas maneiras, como métodos analíticos usando o teorema do envelope (Como o exemplo dado em \cite{laibson}), método dos coeficientes determinados ou analisando a solução numericamente em um computador.
+
+No caso do problema da subsequência máxima, resolvemos o problema da equação de \textit{Bellmann} pelo método numérico, avaliando cada estágio de forma recursiva.
+
+Neste trabalho trataremos apenas de métodos numéricos e excluiremos casos onde a dimensionalidade dos estados pode inviabilizar uma solução. Para estes últimos existe um outro ramo de estudo, chamado de programação dinâmica aproximada, onde as equações de \textit{Bellmann} são aproximadas com o auxílio de algumas técnicas (\cite{Bertsekas}).
+
+\section{Definições de problemas com esquemas de aproximação usando programação dinâmica}
+\label{sec:defsProblemas}
+
+Os problemas a seguir possuem PTAS conhecido e que usam programação dinâmica. Fornecemos nesta seção suas definições. No próximo capítulo iremos descrever estes algoritmos.
+
+O leitor mais atento pode-se perguntar como encontraremos soluções aproximadas para problemas usando programação dinâmica, se esta é aplicada em problemas para encontrar a solução ótima.
+
+Veremos no capítulo \ref{chap:algs} que todos estes algoritmos possuem uma característica em comum: A partir de uma instância original do problema \textit{I} eles definem uma instância modificada \textit{I'} com custo polinomial e em \textit{I'} aplicam o algoritmo de programação dinâmica.
+
+Ademais, sendo $A$ um algoritmo de programação dinâmica para a instância modificada $I'$, para todos estes problemas é válido que a solução obtida aplicando-se $A$ em $I'$, ou seja $A(I')$, encontraremos uma solução para a instância original $I$ a um custo não superior a $(1+\epsilon)OPT(I)$ para problemas de otimização e  $(1-\epsilon)OPT(I)$ para problemas de minimização, sendo $OPT(I)$ a solução ótima para a instância $I$.
+
+Apresentamos no restante desta seção a definição de quatro problemas que estudaremos no próximo capítulo detalhadamente.
+
+\subsection{O problema da mochila}
+\label{sec:defmochila}
+
+Um viajante depara-se com um um tesouro. Contudo, sua mochila não é grande o suficiente para levar todos os seus itens. Seu objetivo é escolher dentre todos os itens qual o sub-conjunto capaz de maximizar seus ganhos.
+
+\begin{definition}[Problema da mochila]
+Dado um conjunto de itens $I = {1 \ldots n}$, onde cada item $i$ tem valor $v_i$ e tamanho $s_i$. Todos os valores são inteiros positivos. A mochila possui capacidade B e o objetivo é encontrar $ S \subseteq I $  tal que $\sum_{i \in S} s_i \leq  B$ maximizando $\sum_{i \in S} v_i$.
+\end{definition}
+
+Veremos como resolver o problema da mochila com auxílio de um PTAS na seção \ref{ref:ptasMochila}.
+
+\subsection{Escalonamento de tarefas em máquinas paralelas idênticas}
+
+Precisamos executar $n$ tarefas em $m$ máquinas idênticas. Cada máquina executa paralelamente a outra e só pode executar uma tarefa por vez. Qual o menor tempo de execução?
+
+\begin{definition}[Problema do escalonamento de tarefas em máquinas paralelas]
+Dado um conjunto $N$ tarefas de tamanho $n$ e $M$ máquinas idênticas de tamanho $m$, onde para cada tarefa $t \in N$ necessita de $P_t$ unidades de tempo e termina de executar em $C_t$ unidades do início da execução, determinar qual ordem de atribuição de tarefas por máquina de forma a minimizar $c_{max} = \max_{t=1 \ldots n} c_t$.
+\end{definition}
+
+Veremos um esquema de aproximação para o problema do escalonamento na seção \ref{sec:escalonamento}.
+
+\subsection{Problema do empacotamento}
+
+São dadas $n$ peças (ou itens) de tamanhos $1 > a_1 \geq a_2 \geq \ldots geq a_n > 0 $ ordenados de forma decrescente. Desejamos colocá-las no menor número possível de caixas de tamanho um.
+
+\begin{definition}[Problema do empacotamento]
+Seja um conjunto de itens $1 > a_1 \geq a_2 \geq \ldots \geq a_n > 0 $. Desejamos empacotá-los em um conjunto caixas $C$, composto por $c$ caixas de tamanho 1 de forma a minimizar $C$.
+\end{definition}
+
+Veremos um PTAS para o problema do empacotamento na seção \ref{sec:empacotamento}
+
+\subsection{O caixeiro viajante euclidiano}
+
+O caixeiro viajante euclidiano é uma subclasse do problema do caixeiro viajante, onde as distâncias entre os nós respeitam as distâncias do plano euclidiano. Definimos abaixo o problema.
+
+\begin{definition}[Problema do Caixeiro viajante euclidiano]
+Dados $n$ pontos no espaço $\mathbb{R}^2$, onde $x=(x_1,x_2),y=(y_1,y_2) \in n, x \neq y$ e $d(x,y) = \sqrt{ (x_1 - y_1)^2 + (x_2 - y_2)^2}$, encontrar o menor caminho que passe por todos os pontos.
+\end{definition}
+
+

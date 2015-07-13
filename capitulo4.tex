@@ -1,0 +1,174 @@
+\chapter{Proposta e Objetivos}
+
+\label{PropostaDeMestrado}
+
+Além do término da demonstração do esquema de aproximação polinomial para o problema do caixeiro viajante euclidiano, apresentamos como proposta estudar um outro PTAS.
+
+Este esquema de aproximação polinomial faz parte de uma classe interessante de problemas: A dos grafos de discos unitários. Justificamos estudá-los porque recentemente, descobriu-se um PTAS para um problema do tipo.
+
+Falaremos primeiro da definição de grafo de disco unitário. 
+
+\begin{definition}[Grafo de disco unitário]
+Um grafo de disco unitário $G(V,E)$ é um grafo formado pela intersecção de círculos unitários no plano euclidiano, onde cada círculo é um vértice $v \in V$ e para cada par de círculos, há uma aresta $e \in E$ se e somente se houver uma intersecção entre círculos.
+\end{definition}
+
+Um grafo de disco unitário é formado por círculos no plano euclidiano, correspondendo cada círculo em uma vértice e cada intersecção de círculos uma aresta.
+
+A figura \label{fig:discoUnitario} ilustra um conjunto de círculos unitários e seu correspondente grafo.
+
+\begin{figure}[!htpb]
+\centering
+\label{fig:discoUnitario}
+\begin{pspicture}(0,-1.67)(3.66,1.67)
+\pscircle[linewidth=0.04,dimen=outer](0.61,0.64){0.61}
+\pscircle[linewidth=0.04,dimen=outer](1.26,0.91){0.64}
+\pscircle[linewidth=0.04,dimen=outer](1.1,-0.29){0.66}
+\pscircle[linewidth=0.04,dimen=outer](1.94,-1.03){0.64}
+\pscircle[linewidth=0.04,dimen=outer](2.7,-0.37){0.64}
+\pscircle[linewidth=0.04,dimen=outer](2.99,0.36){0.67}
+\pscircle[linewidth=0.04,dimen=outer](2.42,1.03){0.64}
+\psdots[dotsize=0.02](2.42,1.11)
+\psdots[dotsize=0.02](2.4,1.13)
+\psdots[dotsize=0.12](2.4,1.11)
+\psdots[dotsize=0.12](1.28,0.95)
+\psdots[dotsize=0.12](0.58,0.67)
+\psdots[dotsize=0.12](1.12,-0.29)
+\psdots[dotsize=0.12](1.9,-1.05)
+\psdots[dotsize=0.12](2.7,-0.35)
+\psdots[dotsize=0.12](3.0,0.33)
+\psline[linewidth=0.04cm](1.3,0.93)(2.42,1.11)
+\psline[linewidth=0.04cm](2.42,1.11)(3.0,0.31)
+\psline[linewidth=0.04cm](3.02,0.29)(2.7,-0.37)
+\psline[linewidth=0.04cm](2.7,-0.37)(1.9,-1.05)
+\psline[linewidth=0.04cm](1.9,-1.07)(1.1,-0.29)
+\psline[linewidth=0.04cm](1.14,-0.31)(1.28,0.99)
+\psline[linewidth=0.04cm](0.58,0.65)(1.32,0.97)
+\psline[linewidth=0.04cm](0.58,0.63)(1.12,-0.33)
+\end{pspicture} 
+\caption{Exemplo de grafo de disco unitário}
+\end{figure}
+
+Vários trabalhos discutem grafos de discos unitários na literatura, como \cite{clark1990unit}, \cite{marathe1995simple}. Estes possuem aplicações diretas em redes de cobertura de sensores \cite{Huang}, redes \textit{ad-hoc} \cite{kuhn2003ad}, etc.
+
+Estudaremos alguns trabalhos referentes a grafos de discos unitários, em especial aqueles aqui referenciados. Em seguida estudaremos o problema da cobertura de vértices para estes grafos.
+
+Recentemente, um PTAS para o problema da cobertura de vértices em grafos de discos unitários foi descoberto \cite{li}, entretanto, carecem na literatura estudos comparativos entre este algoritmo e o uso de heurísticas para a solução deste problema, como as apresentadas em \cite{marathe1995simple}.
+
+Vamos definir o problema da cobertura de vértices em discos unitários com peso (Baseada em \cite{li}):
+
+\begin{definition}[Problema da cobertura de vértices em discos unitários com peso]
+Dado um conjunto $\mathcal{D} = \{D_1, \ldots, D_n\}$ de $n$ discos unitários, e um conjunto $\mathcal{P} = \{P_1, \ldots, P_m\}$ de $m$ pontos no plano euclidiano $\mathbb{R}^2$. Cada disco $D_i$ tem peso $w(D_i)$. Escolher um conjunto de discos para cobrir todos os pontos em $\mathcal{P}$ , minimizando o peso total dos discos escolhidos. 
+\end{definition}
+
+Este problema introduz outro tipo de grafo de disco unitário contendo pesos nas arestas. Por simplicidade omitiremos esta definição. Há um equivalente do mesmo problema para grafos de disco unitários apresentado em \cite{li}. No restante desta discussão trataremos da versão com peso.
+
+Enquanto estudávamos cada um dos problemas, uma das maiores dúvidas que tivemos foi quanto à observação do viés provocado pelo ajuste do fator de aproximação do algoritmo em seu tempo de execução. Sabemos que muitos destes problemas (Como o da cobertura de vértices em grafos de discos unitários) possuem também heurísticas conhecidas.
+
+Sendo assim, pretendemos comparar o PTAS para o problema da cobertura de vértice em discos unitários com as heurísticas apresentadas no outro trabalho, visando determinar qual o desempenho destas técnicas, sendo que definiremos abaixo o que consideramos como indicadores de desempenho.
+
+\section{Metodologia}
+
+Implementaremos as soluções em linguagem de programação (C/C++). A princípio o estudo seguirá o seguinte critério: Para uma dada instância $I$ do problema, avaliaremos um conjunto de algoritmos $A_i$, $i \geq 2$ por valor da solução e número de instruções executadas nos trechos de maior complexidade. Definiremos estes trechos mediante análise assintótica nos algoritmos apresentados, seguindo o mesmo procedimento que usamos para avaliar o algoritmo da subsequência crescente máxima, apresentado na seção \ref{subsec:sscm}.
+
+Justificamos utilizar a análise assintótica em detrimento do tempo de execução por este último estar bastante atrelado à arquitetura e estado do dispositivo que executa o algoritmo. A contagem do número de instruções neste caso é mais precisa e podemos obtê-la declarando uma variável e incrementando esta toda vez que executada uma instrução.
+
+Buscamos na literatura alguns exemplos de comparação de algoritmos para problemas de otimização. Alguns deles comparam inclusive heurísticas, como \cite{ropke2005heuristic}. O autor do trabalho em questão usa dois parâmetros para comparar algoritmos de rotas de veículos: Distância média da melhor solução encontrada (Chamado de \textit{average gap}) e tempo de execução. Consideramos a primeira medida interessante e utilizaremos esta em nossos estudos.
+
+Em \cite{marathe1995simple} apresenta-se uma heurística que obtém, para um dado grafo de discos unitários, uma 10-aproximação, obtida a partir de algumas premissas. Acreditamos que esta heurística pode ser nosso ponto de partida.
+
+Como os problemas diferem um pouco dos apresentados nesse artigo, precisaremos adaptar as heurísticas, algo que também consideremos em nosso estudo, mais precisamente em nossa terceira etapa.
+
+Entretanto, não sabemos se as heurísticas deste trabalho serão suficientes para o problema ou precisaremos definir novas heurísticas a partir de nosso conhecimento sobre os problemas. Em \cite{lenat} discute-se o processo de criação destas heurísticas, algo que precisamos também levar em consideração quando estudarmos os problemas em grafos de discos unitários.
+
+Nosso objetivo, além de verificar a aplicabilidade de um PTAS proposto na literatura é avaliar as consequências de aproximar-se mais da otimalidade. As soluções heurísticas são incluídas por já serem bastante tempo difundidas e especialmente desenvolvidas para a implementação em computadores modernos.
+
+Algo também curioso que possamos verificar com o número de instruções é qual a ordem de execução (grau do polinômio) o qual o algoritmo assintoticamente encontra-se. Isto é interessante para discutirmos tratabilidade, pois segundo a tese de \textit{Cobham-Edmonds}, todo programa polinomial pode é (tratável ou computável) em um dispositivo físico \cite{homer}. Veremos se mesmo implementável, um PTAS pode ser útil nestas condições.
+
+Sendo assim estamos interessados em avaliar as seguintes características: Facilidade de codificação de cada uma das abordagens, impactos nos ajustes dos parâmetros de otimização do PTAS, distância média entre a solução encontrada pelo PTAS e as heurísticas para a melhor solução encontrada após várias execuções e análise assintótica.
+
+Veremos na próxima seção o cronograma de atividades.
+
+\section{Cronograma}
+\label{sec:cronograma}
+
+As etapas de conclusão do mestrado são:
+
+\begin{enumerate}
+\item Conclusão de créditos em disciplina
+\item Estudar esquemas de aproximação polinomial e programação dinâmica, incluindo o problema do caixeiro viajante euclidiano
+\item Estudar definição de grafos de discos unitários.
+\item Estudar trabalhos de PTAS em grafos de discos unitários
+\item Implementar os algoritmos em linguagem de programação (C/C++)
+\item Comparar os algoritmos nos critérios de : Análise assintótica, contagem de instruções nos trechos de maior complexidade, facilidade de codificação e impactos nos ajustes do PTAS
+\item Compactar resultados
+\item Escrever a dissertação
+\item Defesa
+\item Escrever o artigo científico
+\end{enumerate}
+
+Fornecemos abaixo o cronograma de tarefas já concluídas e futuras, este cronograma é dividido entre as tabelas \ref{tab:act2014}, \ref{tab:act2015} e \ref{tab:act2016}.
+
+A previsão de defesa é para Junho de 2016. Separamos uma tarefa específica para definir as métricas de comaparação apropriadas, já que podemos incluir outras ainda não planejadas.
+
+Incluímos também uma tarefa de compactação de resultados do estudo comparativo, onde faremos a síntese das conclusões para inclusão dos mesmos na dissertação e artigo científico.
+
+A dissertação pode ser realizada em conjunto com as tarefas do ano de 2016, já que até lá teremos concluído os estudos com grafos de disco unitário e os itens já estudados, faltando apenas documentar e apresentar o estudo comparativo.
+
+\begin{table}[]
+\centering
+\caption{Atividades para o ano de 2014}
+\label{tab:act2014}
+\begin{tabular}{|c|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+Número da atividade & Jan &  Fev & Mar & Abr & Mai & Jun & Jul & Ago & Set & Out & Nov & Dez \\ \hline
+1& & \cellcolor[HTML]{343434}   & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434} & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434} & \cellcolor[HTML]{343434} &  \cellcolor[HTML]{343434} & \cellcolor[HTML]{343434} & \cellcolor[HTML]{343434} & \cellcolor[HTML]{343434} & \cellcolor[HTML]{343434}  \\ \hline
+2& & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}   & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}  \\ \hline
+3& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+4& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+5& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+6& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+7& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+8& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+9& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+10& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htpb]
+\centering
+\caption{Atividades para o ano de 2015}
+\label{tab:act2015}
+\begin{tabular}{|c|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+Número da atividade & Jan &  Fev & Mar & Abr & Mai & Jun & Jul & Ago & Set & Out & Nov & Dez \\ \hline
+2& & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}   & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}  &  &   &   &  &  \\ \hline
+3& &  &  &  &  &  & \cellcolor[HTML]{343434} & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434} &  &  &  \\ \hline
+4& &  &  &  &  &  &  &  & \cellcolor[HTML]{343434} & \cellcolor[HTML]{343434}  &  &  \\ \hline
+5& &  &  &  &  &  &  &  &  &  & \cellcolor[HTML]{343434} & \cellcolor[HTML]{343434} \\ \hline
+6& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+7& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+8& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+9& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+10& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htpb]
+\centering
+\caption{Atividades para o ano de 2016}
+\label{tab:act2016}
+\begin{tabular}{|c|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+Número da atividade & Jan &  Fev & Mar & Abr & Mai & Jun & Jul & Ago & Set & Out & Nov & Dez \\ \hline
+2& &  &  &  &  &  & &  &   &   &  &  \\ \hline
+3& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+4& &  &  &  &  &  &  &  &  &   &  &  \\ \hline
+5& &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+6& \cellcolor[HTML]{343434} & \cellcolor[HTML]{343434} &  &  &  &  &  &  &  &  &  &  \\ \hline
+7& & \cellcolor[HTML]{343434} & \cellcolor[HTML]{343434} &   &  & &  &  &  &  &  &  \\ \hline
+8& & \cellcolor[HTML]{343434}   & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434}  & \cellcolor[HTML]{343434} &  &  &  &  &  &  &  \\ \hline
+9& &  &  &  & &
+\cellcolor[HTML]{343434} &  &  &  &  &  &  \\ \hline
+10& &  &  &  &  & \cellcolor[HTML]{343434} & \cellcolor[HTML]{343434} &  &  &  &  &  \\ \hline
+\end{tabular}
+\end{table}

@@ -1,0 +1,131 @@
+\documentclass[12pt,a4paper]{ufpr}
+
+% \usepackage[portuges,brazil]{babel}
+% \usepackage[portuguese,brazil]{babel}
+
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{commath}
+\usepackage{amsthm}
+\usepackage{epsfig}
+\usepackage{multirow}
+\usepackage{xcolor,colortbl}
+\usepackage{url}
+
+% Generated with LaTeXDraw 2.0.8
+% Thu Jul 02 19:43:27 BRT 2015
+\usepackage[usenames,dvipsnames]{pstricks}
+\usepackage{pstricks-add}
+\usepackage{epsfig}
+\usepackage{pst-grad} % For gradients
+\usepackage{pst-plot} % For axes
+
+%\usepackage{isolatin1}
+
+\usepackage{ifthen,graphicx,color}
+\graphicspath{{figuras/}}
+%\usepackage[latin1]{inputenc}
+%\usepackage{auto-pst-pdf}
+%\usepackage{auto-pst-pdf}
+
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{caption2}
+\usepackage{setspace}
+\usepackage{ps-macros}
+\usepackage[portuguese,algochapter,linesnumbered,ruled,inoutnumbered]{algorithm2e}
+% \usepackage{psfig}
+\newtheorem{definition}[subsection]{Definição}
+\newtheorem{lema}{Lema}[chapter]
+\newtheorem{fato}{Fato}[chapter]
+\newtheorem{teorema}{Teorema}[chapter]
+\newtheorem{corolario}{Corolário}[chapter]
+\newtheorem{problema}{Problema}
+
+\setcounter{secnumdepth}{3}    % n - numero de niveis de subsubsection numeradas
+\setcounter{tocdepth}{3}       % coloca ate o nivel n no sumario
+
+\title{Algoritmos de aproximação e programação dinâmica}
+\author{Lucas Del Castanhel Dias}
+\advisortitle{Orientador} % ou Orientador
+\advisorname{Prof. Dr. André Luis Vignatti}
+\advisorplace{Departamento de Informática, UFPR}  % departamento, instituicao
+\city{Curitiba}
+\year{2015}
+
+\banca        % nao insira o nome do orientador, ja eh feito automaticamente
+{Prof. Dr. Luciano Fontoura}{Instituto de Fsica, USP}
+{Prof. Dr. Hlio Pedrini}{Departamento de Inform�, UFPR}
+{Prof. Dr. Alexandre I. Direne}{Departamento de Informtica, UFPR} % se nao houver deixe em branco {}{}
+{}{}    % se houver um quarto membro na banca, inserir nome e instituicao
+
+\defesa{} % dia em que foi realizada a defesa da dissertacao
+
+
+\begin{document}
+\makecapaproposta             % cria capa para proposta%
+%\makecapadissertacao           % cria capa para dissertacao de mestrado %
+\makerostoproposta                     % cria folha de rosto para versao final da UFPR %
+%\maketermo                     % cria folha com o termo de aprovacao da dissertacao%
+
+%\singlespacing           % espacamento 1 - capa UFPR%
+%\onehalfspacing          % espacamento 1/2 %
+\doublespacing            % espacamento 2 - UFPR %
+
+\pagestyle{headings}
+\pagenumbering{roman}
+
+%\chapter*{Agradecimentos}
+
+
+\tableofcontents
+
+%\listoffigures         % se houver mais do que 3 figuras
+%\addcontentsline{toc}{chapter}{\MakeUppercase{Lista de Figuras}}
+%\newpage
+
+%\listoftables        % se houver mais do que 3 tabelas
+%\addcontentsline{toc}{chapter}{\MakeUppercase{Lista de Tabelas}}
+%\newpage
+
+\chapter*{Resumo}
+\addcontentsline{toc}{chapter}{\MakeUppercase{Resumo}}
+\input{resumo.tex}           % somente o texto
+\newpage
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{\MakeUppercase{Abstract}}
+\input{abstract.tex}        % somente o texto
+\newpage
+
+\pagenumbering{arabic}
+
+\input{capitulo1.tex}
+\input{capitulo2.tex}
+\input{capitulo3.tex}
+\input{capitulo4.tex}
+\input{capitulo5.tex}
+
+
+\bibliographystyle{brazil}
+\bibliography{referencias}
+% utilize macros (3 primeiras letras do mes em ingles, minusculas) no seu
+% .bib para atribuir o nome do mes em portugues nas referencia,
+% se o style for brazil, outros estilos tambem aceitam estas macros
+% Ex:
+%
+% @InProceedings{teste,
+%   author =       {Luciano}
+%   year =         {2000}
+%   month =        {}#sep;
+% }
+%
+\addcontentsline{toc}{chapter}{\MakeUppercase{Bibliografia}}
+
+\singlespacing
+%\makecapadissertacao
+
+\end{document}

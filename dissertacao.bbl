@@ -1,0 +1,164 @@
+\begin{thebibliography}{10}
+
+\bibitem{alimonti2000some}
+Paola Alimonti e Viggo Kann.
+\newblock Some apx-completeness results for cubic graphs.
+\newblock {\em Theoretical Computer Science}, 237(1):123--134, 2000.
+
+\bibitem{arora1998polynomial}
+Sanjeev Arora.
+\newblock Polynomial time approximation schemes for euclidean traveling
+  salesman and other geometric problems.
+\newblock {\em Journal of the ACM (JACM)}, 45(5):753--782, 1998.
+
+\bibitem{bellman1952theory}
+Richard Bellman.
+\newblock On the theory of dynamic programming.
+\newblock {\em Proceedings of the National Academy of Sciences of the United
+  States of America}, 38(8):716, 1952.
+
+\bibitem{Bertsekas}
+Dimitri~P. Bertsekas.
+\newblock {\em Dynamic Programming and Optimal Control}.
+\newblock Athena Scientific, 2nd edition, 2000.
+
+\bibitem{blum}
+Avrim Blum.
+\newblock Dynamic programming, Agosto de 2009.
+
+\bibitem{Bradley}
+Stephen~P. Bradley, Arnoldo~C. Hax, e Thomas~L. Magnanti.
+\newblock {\em Applied mathematical programming}.
+\newblock Addison-Wesley, Readin̥g Mass., 1977.
+
+\bibitem{clark1990unit}
+Brent~N Clark, Charles~J Colbourn, e David~S Johnson.
+\newblock Unit disk graphs.
+\newblock {\em Discrete mathematics}, 86(1):165--177, 1990.
+
+\bibitem{vega}
+W~Fernandez De~La~Vega e George~S. Lueker.
+\newblock Bin packing can be solved within 1+ $\varepsilon$ in linear time.
+\newblock {\em Combinatorica}, 1(4):349--355, 1981.
+
+\bibitem{homer}
+Steven~Homer et~al.
+\newblock Turing and the development of computational, complexity.
+\newblock Relatório, 2011.
+
+\bibitem{feofiloffassintotica}
+Paulo Feofiloff.
+\newblock Análise assintótica: ordens o, omega e theta.
+\newblock Aula, Abril de 2015.
+
+\bibitem{feofiloff}
+Paulo Feofiloff.
+\newblock Subsequência crescente máxima.
+\newblock Aula, Abril de 2015.
+
+\bibitem{Fortnow:2009:SPV:1562164.1562186}
+Lance Fortnow.
+\newblock The status of the p versus np problem.
+\newblock {\em Commun. ACM}, 52(9):78--86, setembro de 2009.
+
+\bibitem{googleloon}
+Google.
+\newblock Project loon.
+\newblock Página, 2015.
+
+\bibitem{graham}
+Ronald~L. Graham.
+\newblock Bounds on multiprocessing timing anomalies.
+\newblock {\em SIAM journal on Applied Mathematics}, 17(2):416--429, 1969.
+
+\bibitem{gupta}
+Himanshu Gupta, Samir~R. Das, e Quinyi Gu.
+\newblock Connected sensor cover: Self-organization of sensor networks for
+  efficient query execution.
+\newblock {\em Proceedings of the 4th ACM International Symposium on Mobile Ad
+  Hoc Networking \&Amp; Computing}, MobiHoc '03, p�ginas 189--200, New York,
+  NY, USA, 2003. ACM.
+
+\bibitem{hastad}
+Johan H{\aa}stad.
+\newblock Some optimal inapproximability results.
+\newblock {\em J. ACM}, 48(4):798--859, julho de 2001.
+
+\bibitem{hochbaum}
+Dorit~S Hochbaum e David~B Shmoys.
+\newblock Using dual approximation algorithms for scheduling problems
+  theoretical and practical results.
+\newblock {\em Journal of the ACM (JACM)}, 34(1):144--162, 1987.
+
+\bibitem{Huang}
+Lingxiao Huang, Jian Li, e Qicai Shi.
+\newblock Approximation algorithms for the connected sensor cover problem.
+\newblock {\em CoRR}, abs/1505.00081, 2015.
+
+\bibitem{ibarra}
+Oscar~H. Ibarra e Chul~E. Kim.
+\newblock Fast approximation algorithms for the knapsack and sum of subset
+  problems.
+\newblock {\em J. ACM}, 22(4):463--468, outubro de 1975.
+
+\bibitem{janosiasymptoptic}
+Tibor Janosi.
+\newblock Introduction to asymptotic analysis.
+\newblock Aula, 2004.
+
+\bibitem{kuhn2003ad}
+Fabian Kuhn, Rogert Wattenhofer, e Aaron Zollinger.
+\newblock Ad-hoc networks beyond unit disk graphs.
+\newblock {\em Proceedings of the 2003 joint workshop on Foundations of mobile
+  computing}, p�ginas 69--78. ACM, 2003.
+
+\bibitem{laibson}
+David Laibson.
+\newblock Introduction to dynamic programming.
+\newblock Aula, 2010.
+
+\bibitem{lawler}
+E.L. Lawler.
+\newblock Fast approximation algorithms for knapsack problems.
+\newblock {\em Foundations of Computer Science, 1977., 18th Annual Symposium
+  on}, p�ginas 206--213, Oct de 1977.
+
+\bibitem{lenat}
+Douglas~B. Lenat.
+\newblock The nature of heuristics.
+\newblock Relat�rio T�cnico SSL-81-01/CIS-12, Xerox (Palo Alto, CA US),
+  1981.
+
+\bibitem{li}
+Jian Li e Yifei Jin.
+\newblock A {PTAS} for the weighted unit disk cover problem.
+\newblock {\em CoRR}, abs/1502.04918, 2015.
+
+\bibitem{marathe1995simple}
+Madhav~V Marathe, Heinz Breu, Harry~B Hunt, Shankar~S Ravi, e Daniel~J
+  Rosenkrantz.
+\newblock Simple heuristics for unit disk graphs.
+\newblock {\em Networks}, 25(2):59--68, 1995.
+
+\bibitem{ComplexityZoo}
+University of~Waterloo.
+\newblock Complexityzoo.
+\newblock Página, 2015.
+
+\bibitem{ropke2005heuristic}
+Stefan Ropke.
+\newblock Heuristic and exact algorithms for vehicle routing problems.
+\newblock 2005.
+
+\bibitem{Vignatti}
+André~Luís Vignatti.
+\newblock {Aproxima̧c̃ao e Compartilhamento de Custos em Projeto de Redes}.
+\newblock Disserta��o de Mestrado, Universidade Estadual de Campinas,
+  Campinas, Brasil, 2006.
+
+\bibitem{Williamson}
+David~P. Williamson e David~B. Shmoys.
+\newblock {\em The Design of Approximation Algorithms}.
+\newblock Cambridge University Press, New York, NY, USA, 1st edition, 2011.
+
+\end{thebibliography}

@@ -1,0 +1,38 @@
+\chapter{Introdu\c{c}\~ao}
+\label{chap:Introducao}
+
+Esta proposta trata de dois conceitos: Algoritmos de aproximação e programação dinâmica. Veremos como ambas as técnicas podem ser combinadas para chegarmos próximo da solução ótima em problemas NP-Completos ou NP-difíceis, como em \cite{arora1998polynomial}, em tempo polinomial em relação a um parâmetro de ajuste.
+
+Ao contrário da maioria dos trabalhos que citamos, os quais trabalham com problemas específicos, focamos até o momento em estudar algoritmos de aproximação que usam programação dinâmica como técnica de projeto.
+
+Destinaremos o restante desta introdução para apresentar estes dois conceitos e falar da organização desta proposta de qualificação.
+
+\section{Algoritmos de aproximação}
+
+Até o presente momento, alguns problemas abordados em ciência da computação não possuem algoritmos polinomiais capazes de calcular sua solução ótima. Estes problemas estão comumente nas classes NP-Completo e NP-difícil \cite{Fortnow:2009:SPV:1562164.1562186}, cuja principal característica é a de que os algoritmos mais rápidos conhecidos executam em tempo exponencial em relação ao tamanho da entrada.
+
+Sabendo que não podemos chegar à otimalidade sem gastar tempo exponencial, podemos sacrificá-la para encontrar uma solução próxima do ótimo resolvendo-a em tempo polinomial. Os algoritmos de aproximação provém soluções próximas as quais podemos quantificar a distância entre a solução e o valor ótimo para determinada instância e em tempo polinomial.
+
+\section{Programação dinâmica}
+
+Programação dinâmica é uma técnica, proposta inicialmente por Richard Bellmann \cite{bellman1952theory}. Ela consiste em dividir um problema em instâncias menores, de solução mais simples. A solução global é formada a partir da combinação destas pequenas soluções.
+
+Veremos algumas facetas da programação dinâmica em problemas mais simples e posteriormente como técnica de projeto de algoritmos para obter aproximações de problemas difíceis em tempo polinomial.
+
+\section{A proposta}
+
+Escolhemos estudar grafos de disco unitários como proposta. A justificativa é que recentemente descobriu-se um esquema de aproximação para o Problema da cobertura de vértices em discos unitários com peso \cite{li}. Definiremos este e apresentaremos uma breve visão de sua definição quando falarmos da proposta, no capítulo \ref{PropostaDeMestrado}.
+
+Considerarmos estudar o esquema de aproximação para o problema em questão devido a este utilizar programação dinâmica e tratar de problemas bastante abordados atualmente.
+
+Nosso objetivo é implementar o PTAS descrito em \cite{li} e compará-lo com soluções heurísticas adaptadas de \cite{marathe1995simple}, pois o problema é um pouco diferente das soluções abordadas na literatura.
+
+\section{Organização do documento}
+
+O restante do documento está organizado da seguinte maneira:
+
+No capítulo \ref{chap:defs} apresentamos as definições de algoritmos de aproximação, programação dinâmica (E exemplos de uso da técnica) e de problemas com soluções obtidas através da combinação entre as duas técnicas (Problema da mochila, empacotamento, caixeiro viajante euclidiano, etc).
+
+No capítulo \ref{chap:algs} apresentamos esquemas de aproximação que usam programação como técnica. A base deste capítulo é fornecida com base no livro de Williamsom e Shimoys \cite{Williamson}.
+
+No capítulo \ref{PropostaDeMestrado} apresentamos a proposta de continuidade do trabalho. O cronograma de atividades é apresentado na seção \ref{sec:cronograma}.

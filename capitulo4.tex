@@ -68,7 +68,9 @@ Dado um conjunto $\mathcal{D} = \{D_1, \ldots, D_n\}$ de $n$ discos unitários, 
 
 Este problema introduz outro tipo de grafo de disco unitário contendo pesos nas arestas. Por simplicidade omitiremos esta definição. Há um equivalente do mesmo problema para grafos de disco unitários apresentado em \cite{li}. No restante desta discussão trataremos da versão com peso.
 
-Enquanto estudávamos cada um dos problemas, uma das maiores dúvidas que tivemos foi quanto à observação do viés provocado pelo ajuste do fator de aproximação do algoritmo em seu tempo de execução. Sabemos que muitos destes problemas (Como o da cobertura de vértices em grafos de discos unitários) possuem também heurísticas conhecidas.
+Em \cite{marathe1995simple} apresenta-se uma heurística que obtém, para um dado grafo de discos unitários, uma 10-aproximação para uma versão sem pesos do mesmo problema equivalente à definição do problema, a qual é demonstrada em \cite{li}.
+
+Enquanto estudávamos cada um dos problemas, uma das maiores dúvidas que tivemos foi quanto à observação do viés provocado pelo ajuste do fator de aproximação do algoritmo em seu tempo de execução. Sabemos que muitos destes problemas (Como o da cobertura de vértices em grafos de discos unitários) possuem também heurísticas conhecidas \cite{marathe1995simple}.
 
 Sendo assim, pretendemos comparar o PTAS para o problema da cobertura de vértice em discos unitários com as heurísticas apresentadas no outro trabalho, visando determinar qual o desempenho destas técnicas, sendo que definiremos abaixo o que consideramos como indicadores de desempenho.
 
@@ -76,21 +78,17 @@ Sendo assim, pretendemos comparar o PTAS para o problema da cobertura de vértic
 
 Implementaremos as soluções em linguagem de programação (C/C++). A princípio o estudo seguirá o seguinte critério: Para uma dada instância $I$ do problema, avaliaremos um conjunto de algoritmos $A_i$, $i \geq 2$ por valor da solução e número de instruções executadas nos trechos de maior complexidade. Definiremos estes trechos mediante análise assintótica nos algoritmos apresentados, seguindo o mesmo procedimento que usamos para avaliar o algoritmo da subsequência crescente máxima, apresentado na seção \ref{subsec:sscm}.
 
-Justificamos contar o número de instruções nos trechos de maior complexidade em detrimento do tempo de execução por este último estar bastante atrelado à arquitetura e estado do dispositivo que executa o algoritmo. Esta análise é mais precisa e podemos obtê-la declarando uma variável e incrementando esta toda vez que executada uma instrução, a qual sabemos que no modelo \textit{RAM} possui um valor constante $O(1)$ por instrução \cite{arora1998polynomial}.
+Justificamos contar o número de instruções nos trechos de maior complexidade em detrimento do tempo de execução por este último estar bastante atrelado à arquitetura e estado do dispositivo que executa o algoritmo. Podemos obtê-la declarando uma variável e incrementando esta toda vez que executada uma instrução, a qual sabemos que no modelo \textit{RAM} possui um valor constante $O(1)$ por instrução \cite{arora1998polynomial}.
 
-Buscamos na literatura alguns exemplos de comparação de algoritmos para problemas de otimização. Alguns deles comparam inclusive heurísticas, como \cite{ropke2005heuristic}. O autor do trabalho em questão usa dois parâmetros para comparar algoritmos de rotas de veículos: Distância média da melhor solução encontrada (Chamado de \textit{average gap}) e tempo de execução. Consideramos a primeira medida interessante e utilizaremos esta em nossos estudos.
+Buscamos na literatura alguns exemplos de comparação de algoritmos para problemas de otimização. Alguns deles comparam inclusive heurísticas, como \cite{ropke2005heuristic}. O autor do trabalho em questão usa dois parâmetros para comparar algoritmos de rotas de veículos: Distância média da melhor solução encontrada (Chamado de \textit{average gap}) e tempo de execução. Incluiremos esta primeira medida quando falarmos de heurísticas, pois poderemos verificar qual delas encontra a melhor solução em um número $k$ de execuções. Acreditamos que esta medida não é muito útil para o PTAS, já que este algoritmo parece ser determinístico \cite{li}.
 
-Em \cite{marathe1995simple} apresenta-se uma heurística que obtém, para um dado grafo de discos unitários, uma 10-aproximação, obtida a partir de algumas premissas. Acreditamos que esta heurística pode ser nosso ponto de partida.
-
-Como os problemas diferem um pouco dos apresentados nesse artigo, precisaremos adaptar as heurísticas, algo que também consideremos em nosso estudo, mais precisamente em nossa terceira etapa.
-
-Entretanto, não sabemos se as heurísticas deste trabalho serão suficientes para o problema ou precisaremos definir novas heurísticas a partir de nosso conhecimento sobre os problemas. Em \cite{lenat} discute-se o processo de criação destas heurísticas, algo que precisamos também levar em consideração quando estudarmos os problemas em grafos de discos unitários.
+Entretanto, não sabemos se as heurísticas deste trabalho serão suficientes para o problema ou precisaremos definir novas a partir de nosso conhecimento sobre os problemas. Em \cite{lenat} discute-se o processo de criação destas heurísticas, algo que precisamos também levar em consideração quando estudarmos os problemas em grafos de discos unitários.
 
 Nosso objetivo, além de verificar a aplicabilidade de um PTAS proposto na literatura é avaliar as consequências de aproximar-se mais da otimalidade. Arora \cite{arora1998polynomial}, por exemplo em seu artigo que trata do esquema de aproximação polinomial comenta que sua solução é mais lenta que algumas heurísticas conhecidas para o caixeiro viajante euclidiano. 
 
 Algo também curioso que possamos verificar com o número de instruções é qual a ordem de execução (grau do polinômio) o qual o algoritmo assintoticamente encontra-se. Isto é interessante para discutirmos tratabilidade, pois segundo a tese de \textit{Cobham-Edmonds}, todo programa polinomial pode é (tratável ou computável) em um dispositivo físico \cite{homer}. Veremos se mesmo implementável, um PTAS pode ser útil nestas condições em detrimento de uma heurística.
 
-Sendo assim estamos interessados em avaliar as seguintes características: Facilidade de codificação de cada uma das abordagens, impactos nos ajustes dos parâmetros de otimização do PTAS, distância média entre a solução encontrada pelo PTAS e as heurísticas para a melhor solução encontrada após várias execuções e número de instruções gastas na etapa de maior complexidade dos algoritmos.
+Sendo assim estamos interessados em avaliar as seguintes características: Facilidade de codificação de cada uma das abordagens, impactos nos ajustes dos parâmetros de otimização do PTAS, distância média entre a melhor solução encontrada para as heurísticas e a melhor solução encontrada. Algo que também consideramos bastante reelevante para a pesquisa é introduzirmos novas heurísticas, as quais procuraremos nos trabalhos que citamos e também em outros.
 
 Veremos na próxima seção o cronograma de atividades.
 

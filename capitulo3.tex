@@ -153,7 +153,7 @@ Com os valores divididos por $\mu$, o vetor de valores $V' = \sum_{i=1}^{n} v_i'
 V' = \sum_{i=1}^{n} v_i' = \sum_{i=1}^n \left\lfloor \frac{v_i}{\epsilon M / n} \right\rfloor
 \end{equation}
 
-O último termo desta soma é na verdade, uma soma de progressão aritmética dividida por um fator $\epsilon$. Esta soma tem uma característica de seu resultado ser $O(n^2)$. Sabemos então que $V' = O(n^2/ \epsilon)$. Observando a ordem do algoritmo \ref{alg:pdmochila}, se executarmos este algoritmo com esta aproximação, o tempo de execução será de:
+O termo $v_i$ desta soma é na verdade, uma soma de mesma ordem de uma progressão aritmética dividida por um fator $\epsilon$. Esta soma de termos $v_i$ tem uma característica de seu resultado ser $O(n^2)$. Sabemos então que $V' = O(n^2/ \epsilon)$. Observando a ordem do algoritmo \ref{alg:pdmochila}, se executarmos este algoritmo com esta aproximação, o tempo de execução será de:
 
 \begin{equation}
 O(n \min\{V,B\}) = O(n^3/ \epsilon)
@@ -321,7 +321,7 @@ Além disso, precisamos executar $P = \sum_{j=1}^n p_j$ unidades de processament
 c_{max}^{*} \geq \sum_{j=1}^{n} p_j / m
 \end{equation}
 
-Para analisar o tempo do algoritmo de busca local, seja $l$ a última tarefa a executar. O horário em que esta tarefa termina é denotado por $c_l$, que é o mesmo que $c_max$, ou tempo objetivo. Sabemos que se o algoritmo terminou com esta tarefa em $c_l$ é porque nenhuma outra máquina estava disponível para completá-la antes. Denotamos por $S_l$ o tempo de início da tarefa $l$, $S_l = C_l - p_l$. Podemos particionar esta execução em dois períodos, de 0 até $S_l$ e $p_l$. Sabemos pela equação \ref{equ:escpj} que $p_l \leq c_{\max}^*$. Quanto ao período antes da última tarefa executar, as máquinas realizaram no máximo $mS_l$ unidades de trabalho, o que não pode ser superior ao total de trabalho a ser feito, caso contrário a tarefa $l$ já teria acabado. Sendo assim:
+Para analisar o tempo do algoritmo de busca local, seja $l$ a última tarefa a executar. O horário em que esta tarefa termina é denotado por $c_l$, que é o mesmo que $c_{\max}$, ou tempo objetivo. Sabemos que se o algoritmo terminou com esta tarefa em $c_l$ é porque nenhuma outra máquina estava disponível para completá-la antes. Denotamos por $S_l$ o tempo de início da tarefa $l$, $S_l = C_l - p_l$. Podemos particionar esta execução em dois períodos, de 0 até $S_l$ e $p_l$. Sabemos pela equação \ref{equ:escpj} que $p_l \leq c_{\max}^*$. Quanto ao período antes da última tarefa executar, as máquinas realizaram no máximo $mS_l$ unidades de trabalho, o que não pode ser superior ao total de trabalho a ser feito, caso contrário a tarefa $l$ já teria acabado. Sendo assim:
 
 \begin{equation}
 \label{equ:sl}
@@ -412,7 +412,7 @@ Defina $P_{short}$ com todas as tarefas onde $p_l \leq \sum_{j=1}^{n} p_j / km$
 
 Encontre o escalonamento ótimo para $P_{long}$
 
-Execute o algoritmo \ref{alg:buscalocalescalonamento} com os dados de entrada, matriz $ME$ para $P_short$
+Execute o algoritmo \ref{alg:buscalocalescalonamento} com os dados de entrada, matriz $ME$ para $P_{short}$
 
 \caption{$A_k$}
 \label{alg:ak}
@@ -424,10 +424,10 @@ No algoritmo de aproximação constante, deduzimos a seguinte inequação para o
 
 \begin{equation}
 \label{equ:shortjob}
-c_{max} \leq pl + \sum_{j \neq 1} p_j / m
+c_{max} \leq p_l + \sum_{j \neq 1} p_j / m
 \end{equation}
 
-Analisamos este algoritmo da mesma maneira que analisamos a última tarefa naquela ocasião. Nossa primeira hipótese é que esta seja uma tarefa curta. Neste caso, a equação \ref{equ:shortjob}, pois o algoritmo $A_k$ usa o algoritmo de escalonamento por listas. Além disso, a condição $p_l \leq \frac{1}{km} \sum_{j=1}^{n} p_j$ é válida e podemos calcular: 
+Analisamos este algoritmo da mesma maneira que analisamos a última tarefa naquela ocasião. Nossa primeira hipótese é que esta seja uma tarefa curta. Neste caso, a equação \ref{equ:shortjob} vale, pois o algoritmo $A_k$ usa o algoritmo de escalonamento por listas. Além disso, a condição $p_l \leq \frac{1}{km} \sum_{j=1}^{n} p_j$ é válida e podemos calcular: 
 
 \begin{equation}
 c_{max} \leq \sum_{j = 1}^{n} p_j / (mk) + \sum_{j \neq 1} p_j / m \leq \left(1 + \frac{1}{k}\right) \sum_{j=1}^{n} p_j/m \leq \left(1 + \frac{1}{k}\right) c_{max}^*
@@ -465,26 +465,26 @@ Arredondaremos os tempos de execução de todas as tarefas por seu múltiplo mai
 
 O princípio de $B_k$ é similar a $A_k$. Para um determinado valor de $T$, procuraremos pelo escalonamento das tarefas longas com número variável de máquinas em tempo inferior a $T$ e se existir, executaremos o algoritmo de escalonamento por listas para incluir as tarefas curtas.
 
-Novamente analisaremos a última tarefa. Primeiro consideraremos o caso onde ela é longa. Se não há escalonamento mais curto do que no tempo $T$, então o algoritmo decide que não há. Caso contrário, suponha $S$ o conjunto de tarefas atribuídos para uma máquina específica. Como cada tarefa na máquina é longa, $p_j \leq T/k$ então se há escalonamento em tempo inferior a $T$, $\abs{S} \leq k$, caso contrário o tempo de escalonamento seria superior a $T$. 
+Novamente analisaremos a última tarefa. Primeiro consideraremos o caso onde ela é longa. Se não há escalonamento mais curto do que no tempo $T$, então o algoritmo decide que não há. Caso contrário, suponha $S$ o conjunto de tarefas atribuídos para uma máquina específica. Como cada tarefa na máquina é longa, $p_j > T/k$ então se há escalonamento em tempo inferior a $T$, $\abs{S} < k$, caso contrário o tempo de escalonamento seria superior a $T$. 
 
 Além disso, arredondamos os tempos de execução em $T/k^2$ unidades. Graças a este arredondamento, o tempo real de uma tarefa longa na instância original $I$ difere de no máximo, $T/k^2$ unidades. Sabendo que em $S$ temos no máximo $k$ tarefas, segue que:
 
 \begin{equation}
-\sum_{j \in S} p_j \leq T + k ( T / k^2) = \left(1 + \frac{1}{k}\right) T.
+\sum_{j \in S} p_j < T + k ( T / k^2) = \left(1 + \frac{1}{k}\right) T.
 \end{equation}
 
 E assim, se encontrarmos um escalonamento inferior a $T$ na instância modificada $I'$ (Originada do arredondamento), teremos este limite na instância original.
 
-Agora consideraremos o caso onde uma tarefa pequena $l$ é a última a ser executada. Sabemos que o algoritmo encontrou um escalonamento para as tarefas grandes inferiores a $T$ (Caso contrário não chegaria ao passo das tarefas pequenas). Assim sabemos que:
+Agora consideraremos o caso onde uma tarefa pequena $l$ é a última a ser executada. Sabemos que o algoritmo encontrou um escalonamento para as tarefas grandes de tempo inferior a $T$ (Caso contrário não chegaria ao passo das tarefas pequenas). Assim sabemos que:
 
 \begin{equation}
 \sum_{j=1}^{n} p_j/m \leq T
 \end{equation}
 
-E $p_l < T / k$. Então a equação abaixo é válida:
+E $p_l \leq T / k$. Então a equação abaixo é válida:
 
 \begin{equation}
-p_l + \sum_{ j \neq l} p_j < T / k + T = \left(1 + \frac{1}{k}\right) T.
+p_l + \sum_{ j \neq l} p_j / m \leq T / k + T = \left(1 + \frac{1}{k}\right) T.
 \end{equation}
 
 Falta agora explicar como faremos para decidir se há escalonamento para as tarefas longas em tempo inferior a $T$. Usaremos programação dinâmica para este propósito. 
@@ -524,7 +524,7 @@ A equação de \textit{Bellmann} é calculada passo a passo, iterativamente. A s
 
 $(OPT(n_1, \ldots, n_{k^2}))$ retorna o menor número de máquinas necessário para escalonar todas as tarefas. Para implementar esta função basta subtrair sucessivamente de cada estado de entrada todas as configurações de máquina e o mínimo número de estágios até $(OPT(0, \ldots, 0))$, quando todas as tarefas forem escalonadas.
 
-Este algoritmo é polinomial, pois teremos $O(n^{k^2})$ estados e $O(n(k+1)^{k^2})$ operações para resolver cada estado, pois executaremos no máximo $n$ escalonamentos até atribuirmos todas as tarefas.
+Este algoritmo é polinomial, pois teremos $O(n^{k^2})$ estados e $O(n(k+1)^{k^2})$ operações para resolver o estado que procuramos, pois o máximo número de atribuições de tarefa para máquina que podemos fazer é da ordem do número de tarefas $O(n)$.
 
 Vamos mostrar o procedimento para determinar se há um escalonamento $T$ para as tarefas longas a partir de uma bisseção. Sabemos que o que o escalonamento ótimo encontra-se limitado no intervalo $\left[L_0, U_0\right]$, onde $L_0$ e $U_0$ são dados abaixo:
 
@@ -539,7 +539,7 @@ U_0 = \left\lceil \sum_{j=1}^{n} p_j / m \right\rceil + \max_{j=1,\ldots,n} p_j
 Procuramos por T nos intervalos acima, com $T=\left \lfloor \frac{L+U}
 {2} \right \rfloor$. E executamos o algoritmo $B_k$, com $k = \lceil 1/ \epsilon \rceil$. Caso o algoritmo encontre um escalonamento para o valor de $T$ fazemos $U=T$. Caso contrário, fazemos $L=T+1$ e a bisseção termina quando $U=L$ e o algoritmo retorna um escalonamento de tempo no máximo $(1+\epsilon)U$. 
 
-Não demonstraremos que a bisseção é polinomial, embora seja simples de verificá-lo, pois a distância entre os seus limites superior e inferior é de no máximo a largura do processo mais lento. Como dividimos o intervalo por 2 a cada busca, chegamos à resposta na ordem logarítmica deste valor. Como tomamos o valor de $T$ como sendo o piso, sabemos que $L$ sempre será inferior a $c_{\max}*$ e então $(1+\epsilon)L \leq (1+\epsilon c_{max}^*$. Observamos que o algoritmo através da bisseção obtém uma $(1+\epsilon)$-aproximação.
+Não demonstraremos que a bisseção é polinomial, embora seja simples de verificá-lo, pois a distância entre os seus limites superior e inferior é de no máximo a largura do processo mais lento. Como dividimos o intervalo por 2 a cada busca, chegamos à resposta na ordem logarítmica deste valor. Como tomamos o valor de $T$ como sendo o piso, sabemos que $L$ sempre será inferior a $c_{\max}*$ e então $(1+\epsilon)L \leq (1+\epsilon) c_{max}^*$. Observamos que o algoritmo através da bisseção obtém uma $(1+\epsilon)$-aproximação.
 
 \section{Problema do empacotamento}
 \label{sec:empacotamento}
@@ -661,7 +661,7 @@ k \leq \frac{TAM(I)}{(1-\gamma)}
 
 \end{proof}
 
-Vamos fazer $\gamma = \epsilon/2$, neste caso, segundo o lema \ref{lem:empacotamento}, poderemos chegar a uma aproximação assintótica $(1+\epsilon) OPT(I) + 1)$:
+Vamos fazer $\gamma = \epsilon/2$, neste caso, segundo o lema \ref{lem:empacotamento}, poderemos chegar a uma aproximação assintótica $((1+\epsilon) OPT(I) + 1)$:
 
 \begin{equation}
 \label{equ:empacotamentoassintotico}
@@ -851,7 +851,7 @@ $l \leq OPT(I)+k \leq OPT(I) + \epsilon OPT(I) \leq (1 + \epsilon) OPT(I)$
 
 Nesta seção veremos o problema do caixeiro viajante euclidiano. Não demonstraremos todo o problema nesta proposta de qualificação. A previsão de conclusão é para o final de julho de 2015.
 
-A estratégia principal da prova é esta: A partir de uma instância do problema é possível criar uma instância reduzida do problema, e partir desta instância, dividí-la em quadrados com certa aleatoriedade nesta divisão Finalmente é possível demonstrar \cite{Williamson} que é possível encontrar com probabilidade $\frac{1}{2}$ uma rota que encontre $(1 + \epsilon) OPT(I)$.
+A estratégia principal da prova é esta: A partir de uma instância do problema é possível criar uma instância reduzida do problema, e partir desta instância, dividí-la em quadrados com certa aleatoriedade nesta divisão. Finalmente é possível demonstrar \cite{Williamson} que é possível encontrar com probabilidade $\frac{1}{2}$ uma rota que encontre $(1 + \epsilon) OPT(I)$.
 
 Mostraremos aqui a partir de uma instância $I$ do problema como criar a instância $I'$ (No lema \ref{lem:etsp} ) e enunciaremos os teoremas fundamentais para a prova do problema, os quais estamos atualmente estudando.
 

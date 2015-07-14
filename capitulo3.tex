@@ -95,9 +95,9 @@ A remoção dos pares dominantes pode ser executada em tempo $O(\min\{V,B\})$.
 \begin{proof}
 Suponha que estamos no início da linha 9 do algoritmo, e que $A[j]$ esteja ordenada pelo índice $t$ e contenha ainda os pares dominantes e dominados. Mostraremos que basta percorrer um número $O(\abs{A[j]}) = O(\min\{V,B\})$ para remover todos os pares dominados. Suponha dois pares $(t,w)$ e $(t',w')$ de forma que $(t,w)$ domina $(t',w')$.
 Precisamos avaliar dois casos, onde $t=t'$ e $t \neq t'$. No primeiro caso, sabemos que $w \leq w'$ e além disso $t$ e $t'$ são adjacentes em $A[j]$. Logo percorrendo a lista uma vez e comparando os pares adjacentes é suficiente para remover $(t',w')$. Caso exista $(t'',w'')$ dominado por $(t,w)$ de forma que $t=t'=t''$ basta "travar" a execução em $t$ após $t'$ ser removido e repetir a remoção, sem aumentar a ordem de execução do algoritmo.
-Resta-nos mostrar casos onde $t' > t$. Se $t'$ for adjacente a $t$ na ordem de execução aplica-se o mesmo procedimento descrito para $t=t'$. Caso contrário, se $t'$ não é adajcente a $t$, então existe um par $(\hat{t}, \hat{w})$, tal que $t < \hat{t} \leq t'$ tal que não há relação de dominância entre $(\hat{t}, \hat{w})$ e $(t,w)$. Neste caso sabemos que $\hat{w} > w \leq w'$ e $\hat{t} \leq t'$. Logo $(\hat{t}, \hat{w})$ domina $(t',w')$ e ambos são adjacentes. 
+Resta-nos mostrar casos onde $t' > t$. Se $t'$ for adjacente a $t$ na ordem de execução aplica-se o mesmo procedimento descrito para $t=t'$. Caso contrário, se $t'$ não é adajcente a $t$, então existe um par $(\hat{t}, \hat{w})$, tal que $t < \hat{t} \leq t'$ tal que não há relação de dominância entre $(\hat{t}, \hat{w})$ e $(t,w)$. Neste caso sabemos que $\hat{w} > w$, $ w \leq w'$ e $\hat{t} \leq t'$. Logo $(\hat{t}, \hat{w})$ domina $(t',w')$ e ambos são adjacentes. 
 
-Finalmente, para manter o vetor contido em $A[j]$ ordenado, basta formar duas listas, uma contendo $A[j-1]$ e outra contendo os elementos formados da adição de $(s_j,v_j)$ em $A[j-1]$ e intercalá-las, o que pode-se ser feito na ordem de $A[j]$ operações.
+Finalmente, para manter o vetor contido em $A[j]$ ordenado, basta formar duas listas, uma contendo $A[j-1]$ e outra contendo os elementos formados da adição de $(s_j,v_j)$ em $A[j-1]$ e intercalá-las, o que pode-se ser feito na ordem de $\abs{A[j]}$ operações.
 
 Logo o custo para ordenar e eliminar os pares dominados é de $O(\abs{A[j]}) = O(\min\{V,B\})$ de instruções, esta última equação sendo válida porque é impossível termos um número de itens maior a $V+1$ ou $B+1$ pares.
 \end{proof}
@@ -111,13 +111,13 @@ O algoritmo \ref{alg:pdmochila} calcula a solução ótima para o problema da mo
 \begin{proof}
 Provamos por indução que em $j$, $A[j]$ contém somente (e todos) os pares dominantes para todos os estados até $j$. O caso base $A[1] \leftarrow \{(0,0),(s_1,v_1)\}$ é válido. Agora suponha que seja válido para $A[j-1]$. Sendo $S \subseteq \{1, \ldots, j\}$, e $t=\sum_{i \in S} s_i \leq B$ e $w = \sum_{i \in S} v_i$. Afirmamos que existe um par $(t',w') \in A[j]$ que domina o par $(t,w)$.
 
-Avaliaremos em dois casos, no primeiro $j \neq S$. Neste caso, $A[j]$ conterá apenas $(t',w')$, pois $(t,j)$ é obtido de $A[j-1]$ mas removido na linha 9 do algoritmo \ref{alg:pdmochila}.
+Avaliaremos em dois casos, no primeiro $j \notin S$. Neste caso, $A[j]$ conterá apenas $(t',w')$, pois $(t,j)$ é obtido de $A[j-1]$ mas removido na linha 9 do algoritmo \ref{alg:pdmochila}.
 
-No segundo caso $j \in S$. Definimos $S' = S - {j}$, o qual por hipótese de indução, há algum $(\hat{t},\hat{w}) \in A[j-1]$ que domina ($\left(\sum_{i \in S'} s_i,\sum_{i \in S'} v_i\right)$), então $\hat{t} \leq \sum{i \in S'} s_i$ e $\hat{w} \geq \sum_{i \in S'} v_i$. Então o algoritmo adicionará o par $\left(\hat{t} + s_j, \hat{w} + v_j \right)$ para $A[j]$, pois $\hat{t} + s_j \leq t \leq B$ e $\hat{w} + v_j \geq w$. Assim, se um par $(t',w')$ domina um par $(t,w)$ em $j-1$, este continuará dominando em $j$ e a remoção de pares dominados em $j-1$ não afeta a solução ótima.
+No segundo caso $j \in S$. Definimos $S' = S - {j}$, o qual por hipótese de indução, há algum $(\hat{t},\hat{w}) \in A[j-1]$ que domina $\left(\sum_{i \in S'} s_i,\sum_{i \in S'} v_i\right)$, então $\hat{t} \leq \sum_{i \in S'} s_i$ e $\hat{w} \geq \sum_{i \in S'} v_i$. Então o algoritmo adicionará o par $\left(\hat{t} + s_j, \hat{w} + v_j \right)$ para $A[j]$, pois $\hat{t} + s_j \leq t \leq B$ e $\hat{w} + v_j \geq w$. Assim, se um par $(t',w')$ domina um par $(t,w)$ em $j-1$, este continuará dominando em $j$ e a remoção de pares dominados em $j-1$ não afeta a solução ótima.
 
 \end{proof}
 
-A partir do \ref{alg:pdmochila} vemos que o algoritmo consome tempo $O(n \min\{V,B\})$, pois gasta $n$ passos para formar o vetor $A$ e mais $O(n \min\{V,B\})$ para eliminar os passos dominados.
+A partir do \ref{alg:pdmochila} vemos que o algoritmo consome tempo $O(n \min\{V,B\})$, pois gasta $n$ passos para formar o vetor $A$ e mais $O(n \min\{V,B\})$ para eliminar os pares dominados.
 
 O algoritmo \ref{alg:pdmochila} não é um algoritmo polinomial. Rotineiramente codificamos o tamanho da mochila em base binária. Dobrar o tamanho da mochila neste caso aumenta em $\log_2 2 = 1$ o tamanho da instância, enquanto o número de passos na remoção de pares dominantes aumenta $O(B) = 2$. Aumentando em $2^{10}$ o valor da entrada aumentamos em $10$ seu tamanho e em $1024$ o número de passos executados para eliminar os pares dominantes.
 
@@ -559,7 +559,7 @@ A menos que $P=NP$ não pode existir uma $\alpha$-aproximação para o problema 
 \end{teorema}
 
 \begin{proof}
-Há um problema de decisão relativo ao problema do empacotamento chamado de \textit{problema da partição}. São dados $n$ inteiros positivos $b_1, b_2, \ldots, b_n$ cuja soma é igual a $B = \sum_{i=1}^{n}$, sendo que $B$ é par. Queremos saber se é possível dividir os itens em dois conjuntos $S$ e $T$ tal que:
+Há um problema de decisão relativo ao problema do empacotamento chamado de \textit{problema da partição}. São dados $n$ inteiros positivos $b_1, b_2, \ldots, b_n$ cuja soma é igual a $B = \sum_{i=1}^{n} b_i$, sendo que $B$ é par. Queremos saber se é possível dividir os itens em dois conjuntos $S$ e $T$ tal que:
 
 \begin{equation}
 \sum_{i \in S} b_i = \sum_{i \in T} b_i

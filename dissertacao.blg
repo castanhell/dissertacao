@@ -3,46 +3,49 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: dissertacao.aux
 The style file: brazil.bst
 Database file #1: referencias.bib
+Warning--empty journal in lenat
+Warning--there's a number but no volume in lenat
 Warning--empty journal in ropke2005heuristic
+Warning--empty journal in Vignatti
 You've used 32 entries,
             2118 wiz_defined-function locations,
-            686 strings with 7879 characters,
-and the built_in function-call counts, 9111 in all, are:
-= -- 913
+            685 strings with 7816 characters,
+and the built_in function-call counts, 9128 in all, are:
+= -- 909
 > -- 357
-< -- 4
+< -- 3
 + -- 148
 - -- 112
-* -- 564
-:= -- 1532
+* -- 568
+:= -- 1528
 add.period$ -- 97
 call.type$ -- 32
 change.case$ -- 151
 chr.to.int$ -- 0
-cite$ -- 33
-duplicate$ -- 345
-empty$ -- 779
+cite$ -- 36
+duplicate$ -- 348
+empty$ -- 785
 format.name$ -- 112
-if$ -- 1916
+if$ -- 1919
 int.to.chr$ -- 0
 int.to.str$ -- 32
-missing$ -- 24
+missing$ -- 26
 newline$ -- 162
 num.names$ -- 64
-pop$ -- 174
+pop$ -- 180
 preamble$ -- 1
 purify$ -- 120
 quote$ -- 0
-skip$ -- 259
+skip$ -- 261
 stack$ -- 0
 substring$ -- 520
-swap$ -- 57
-text.length$ -- 4
+swap$ -- 56
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 122
-warning$ -- 1
+warning$ -- 4
 while$ -- 95
 width$ -- 34
-write$ -- 347
-(There was 1 warning)
+write$ -- 343
+(There were 4 warnings)

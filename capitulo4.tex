@@ -4,7 +4,7 @@
 
 Além do término da demonstração do esquema de aproximação polinomial para o problema do caixeiro viajante euclidiano, apresentamos como proposta estudar um outro PTAS.
 
-Este esquema de aproximação polinomial faz parte de uma classe interessante de problemas: A dos grafos de discos unitários. Justificamos estudá-los porque recentemente, descobriu-se um PTAS para um problema do tipo.
+Este algoritmo apresentado em \cite{li} resolve um problema que faz parte de uma classe interessante de problemas: A dos grafos de discos unitários.
 
 Falaremos primeiro da definição de grafo de disco unitário. 
 
@@ -19,32 +19,38 @@ A figura \label{fig:discoUnitario} ilustra um conjunto de círculos unitários e
 \begin{figure}[!htpb]
 \centering
 \label{fig:discoUnitario}
-\begin{pspicture}(0,-1.67)(3.66,1.67)
-\pscircle[linewidth=0.04,dimen=outer](0.61,0.64){0.61}
-\pscircle[linewidth=0.04,dimen=outer](1.26,0.91){0.64}
-\pscircle[linewidth=0.04,dimen=outer](1.1,-0.29){0.66}
-\pscircle[linewidth=0.04,dimen=outer](1.94,-1.03){0.64}
-\pscircle[linewidth=0.04,dimen=outer](2.7,-0.37){0.64}
-\pscircle[linewidth=0.04,dimen=outer](2.99,0.36){0.67}
-\pscircle[linewidth=0.04,dimen=outer](2.42,1.03){0.64}
-\psdots[dotsize=0.02](2.42,1.11)
-\psdots[dotsize=0.02](2.4,1.13)
-\psdots[dotsize=0.12](2.4,1.11)
-\psdots[dotsize=0.12](1.28,0.95)
-\psdots[dotsize=0.12](0.58,0.67)
-\psdots[dotsize=0.12](1.12,-0.29)
-\psdots[dotsize=0.12](1.9,-1.05)
-\psdots[dotsize=0.12](2.7,-0.35)
-\psdots[dotsize=0.12](3.0,0.33)
-\psline[linewidth=0.04cm](1.3,0.93)(2.42,1.11)
-\psline[linewidth=0.04cm](2.42,1.11)(3.0,0.31)
-\psline[linewidth=0.04cm](3.02,0.29)(2.7,-0.37)
-\psline[linewidth=0.04cm](2.7,-0.37)(1.9,-1.05)
-\psline[linewidth=0.04cm](1.9,-1.07)(1.1,-0.29)
-\psline[linewidth=0.04cm](1.14,-0.31)(1.28,0.99)
-\psline[linewidth=0.04cm](0.58,0.65)(1.32,0.97)
-\psline[linewidth=0.04cm](0.58,0.63)(1.12,-0.33)
-\end{pspicture} 
+\scalebox{1} % Change this value to rescale the drawing.
+{
+	\begin{pspicture}(0,-3.08)(8.48,3.08)
+	\pscircle[linewidth=0.04,dimen=outer](3.03,1.69){1.15}
+	\pscircle[linewidth=0.04,dimen=outer](1.15,1.07){1.15}
+	\pscircle[linewidth=0.04,dimen=outer](5.07,1.93){1.15}
+	\pscircle[linewidth=0.04,dimen=outer](7.03,1.81){1.15}
+	\pscircle[linewidth=0.04,dimen=outer](7.33,-0.07){1.15}
+	\pscircle[linewidth=0.04,dimen=outer](5.53,-0.83){1.15}
+	\pscircle[linewidth=0.04,dimen=outer](4.35,-1.89){1.15}
+	\pscircle[linewidth=0.04,dimen=outer](2.51,-1.93){1.15}
+	\pscircle[linewidth=0.04,dimen=outer](1.21,-0.83){1.15}
+	\psdots[dotsize=0.12](1.14,1.12)
+	\psdots[dotsize=0.12](2.96,1.74)
+	\psdots[dotsize=0.12](5.08,2.02)
+	\psdots[dotsize=0.12](7.02,1.92)
+	\psdots[dotsize=0.12](7.3,0.0)
+	\psdots[dotsize=0.12](5.56,-0.66)
+	\psdots[dotsize=0.12](4.28,-1.92)
+	\psdots[dotsize=0.12](2.46,-1.9)
+	\psdots[dotsize=0.12](1.16,-0.72)
+	\psline[linewidth=0.04cm](1.14,1.12)(1.14,-0.72)
+	\psline[linewidth=0.04cm](1.18,1.12)(2.98,1.78)
+	\psline[linewidth=0.04cm](2.98,1.76)(5.1,2.02)
+	\psline[linewidth=0.04cm](5.1,2.0)(7.06,1.94)
+	\psline[linewidth=0.04cm](7.02,1.92)(7.3,0.02)
+	\psline[linewidth=0.04cm](7.32,0.0)(5.58,-0.64)
+	\psline[linewidth=0.04cm](5.56,-0.64)(4.26,-1.96)
+	\psline[linewidth=0.04cm](2.44,-1.86)(4.3,-1.94)
+	\psline[linewidth=0.04cm](1.16,-0.76)(2.46,-1.9)
+	\end{pspicture} 
+}
 \caption{Exemplo de grafo de disco unitário}
 \end{figure}
 
@@ -70,7 +76,7 @@ Sendo assim, pretendemos comparar o PTAS para o problema da cobertura de vértic
 
 Implementaremos as soluções em linguagem de programação (C/C++). A princípio o estudo seguirá o seguinte critério: Para uma dada instância $I$ do problema, avaliaremos um conjunto de algoritmos $A_i$, $i \geq 2$ por valor da solução e número de instruções executadas nos trechos de maior complexidade. Definiremos estes trechos mediante análise assintótica nos algoritmos apresentados, seguindo o mesmo procedimento que usamos para avaliar o algoritmo da subsequência crescente máxima, apresentado na seção \ref{subsec:sscm}.
 
-Justificamos utilizar a análise assintótica em detrimento do tempo de execução por este último estar bastante atrelado à arquitetura e estado do dispositivo que executa o algoritmo. A contagem do número de instruções neste caso é mais precisa e podemos obtê-la declarando uma variável e incrementando esta toda vez que executada uma instrução.
+Justificamos contar o número de instruções nos trechos de maior complexidade em detrimento do tempo de execução por este último estar bastante atrelado à arquitetura e estado do dispositivo que executa o algoritmo. Esta análise é mais precisa e podemos obtê-la declarando uma variável e incrementando esta toda vez que executada uma instrução, a qual sabemos que no modelo \textit{RAM} possui um valor constante $O(1)$ por instrução \cite{arora1998polynomial}.
 
 Buscamos na literatura alguns exemplos de comparação de algoritmos para problemas de otimização. Alguns deles comparam inclusive heurísticas, como \cite{ropke2005heuristic}. O autor do trabalho em questão usa dois parâmetros para comparar algoritmos de rotas de veículos: Distância média da melhor solução encontrada (Chamado de \textit{average gap}) e tempo de execução. Consideramos a primeira medida interessante e utilizaremos esta em nossos estudos.
 
@@ -80,11 +86,11 @@ Como os problemas diferem um pouco dos apresentados nesse artigo, precisaremos a
 
 Entretanto, não sabemos se as heurísticas deste trabalho serão suficientes para o problema ou precisaremos definir novas heurísticas a partir de nosso conhecimento sobre os problemas. Em \cite{lenat} discute-se o processo de criação destas heurísticas, algo que precisamos também levar em consideração quando estudarmos os problemas em grafos de discos unitários.
 
-Nosso objetivo, além de verificar a aplicabilidade de um PTAS proposto na literatura é avaliar as consequências de aproximar-se mais da otimalidade. As soluções heurísticas são incluídas por já serem bastante tempo difundidas e especialmente desenvolvidas para a implementação em computadores modernos.
+Nosso objetivo, além de verificar a aplicabilidade de um PTAS proposto na literatura é avaliar as consequências de aproximar-se mais da otimalidade. Arora \cite{arora1998polynomial}, por exemplo em seu artigo que trata do esquema de aproximação polinomial comenta que sua solução é mais lenta que algumas heurísticas conhecidas para o caixeiro viajante euclidiano. 
 
-Algo também curioso que possamos verificar com o número de instruções é qual a ordem de execução (grau do polinômio) o qual o algoritmo assintoticamente encontra-se. Isto é interessante para discutirmos tratabilidade, pois segundo a tese de \textit{Cobham-Edmonds}, todo programa polinomial pode é (tratável ou computável) em um dispositivo físico \cite{homer}. Veremos se mesmo implementável, um PTAS pode ser útil nestas condições.
+Algo também curioso que possamos verificar com o número de instruções é qual a ordem de execução (grau do polinômio) o qual o algoritmo assintoticamente encontra-se. Isto é interessante para discutirmos tratabilidade, pois segundo a tese de \textit{Cobham-Edmonds}, todo programa polinomial pode é (tratável ou computável) em um dispositivo físico \cite{homer}. Veremos se mesmo implementável, um PTAS pode ser útil nestas condições em detrimento de uma heurística.
 
-Sendo assim estamos interessados em avaliar as seguintes características: Facilidade de codificação de cada uma das abordagens, impactos nos ajustes dos parâmetros de otimização do PTAS, distância média entre a solução encontrada pelo PTAS e as heurísticas para a melhor solução encontrada após várias execuções e análise assintótica.
+Sendo assim estamos interessados em avaliar as seguintes características: Facilidade de codificação de cada uma das abordagens, impactos nos ajustes dos parâmetros de otimização do PTAS, distância média entre a solução encontrada pelo PTAS e as heurísticas para a melhor solução encontrada após várias execuções e número de instruções gastas na etapa de maior complexidade dos algoritmos.
 
 Veremos na próxima seção o cronograma de atividades.
 

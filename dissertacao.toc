@@ -17,16 +17,17 @@
 \contentsline {subsection}{\numberline {2.4.3}Escalonamento de tarefas em máquinas paralelas idênticas}{11}
 \contentsline {subsection}{\numberline {2.4.5}Problema do empacotamento}{11}
 \contentsline {subsection}{\numberline {2.4.7}O caixeiro viajante euclidiano}{11}
-\contentsline {chapter}{\numberline {3}\MakeUppercase {Esquemas de aproximação e programação dinâmica}}{12}
-\contentsline {section}{\numberline {3.1}O problema da mochila}{12}
-\contentsline {section}{\numberline {3.2}Escalonamento de tarefas em máquinas paralelas idênticas}{19}
-\contentsline {subsection}{\numberline {3.2.1}Duas $\alpha $-aproximações para o problema}{19}
-\contentsline {subsection}{\numberline {3.2.2}Esquema de aproximação polinomial para o problema do escalonamento}{23}
-\contentsline {section}{\numberline {3.3}Problema do empacotamento}{29}
-\contentsline {section}{\numberline {3.4}O caixeiro viajante euclidiano}{37}
-\contentsline {section}{\numberline {3.5}Considerações sobre o capítulo}{42}
-\contentsline {chapter}{\numberline {4}\MakeUppercase {Proposta e Objetivos}}{43}
-\contentsline {section}{\numberline {4.1}Metodologia}{45}
-\contentsline {section}{\numberline {4.2}Cronograma}{46}
-\contentsline {chapter}{\numberline {5}\MakeUppercase {Considerações Finais}}{49}
-\contentsline {chapter}{\MakeUppercase {Bibliografia}}{53}
+\contentsline {section}{\numberline {2.5}Considerações sobre o capítulo}{12}
+\contentsline {chapter}{\numberline {3}\MakeUppercase {Esquemas de aproximação e programação dinâmica}}{13}
+\contentsline {section}{\numberline {3.1}O problema da mochila}{13}
+\contentsline {section}{\numberline {3.2}Escalonamento de tarefas em máquinas paralelas idênticas}{20}
+\contentsline {subsection}{\numberline {3.2.1}Duas $\alpha $-aproximações para o problema}{20}
+\contentsline {subsection}{\numberline {3.2.2}Esquema de aproximação polinomial para o problema do escalonamento}{24}
+\contentsline {section}{\numberline {3.3}Problema do empacotamento}{30}
+\contentsline {section}{\numberline {3.4}O caixeiro viajante euclidiano}{38}
+\contentsline {section}{\numberline {3.5}Considerações sobre o capítulo}{43}
+\contentsline {chapter}{\numberline {4}\MakeUppercase {Proposta e Objetivos}}{45}
+\contentsline {section}{\numberline {4.1}Metodologia}{47}
+\contentsline {section}{\numberline {4.2}Cronograma}{48}
+\contentsline {chapter}{\numberline {5}\MakeUppercase {Considerações Finais}}{51}
+\contentsline {chapter}{\MakeUppercase {Bibliografia}}{55}

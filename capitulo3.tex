@@ -109,7 +109,7 @@ O algoritmo \ref{alg:pdmochila} calcula a solução ótima para o problema da mo
 \end{teorema}
 
 \begin{proof}
-Provamos por indução que em $j$, $A[j]$ contém somente (e todos) pares dominantes para todos os estados até $j$. O caso base $A[1] \leftarrow \{(0,0),(s_1,v_1)\}$ é válido. Agora suponha que seja válido para $A[j-1]$. Sendo $S \subseteq \{1, \ldots, j\}$, e $t=\sum_{i \in S} s_i \leq B$ e $w = \sum_{i \in S} v_i$. Afirmamos que existe um par $(t',w') \in A[j]$ que domina o par $(t,w)$.
+Provamos por indução que em $j$, $A[j]$ contém somente (e todos) os pares dominantes para todos os estados até $j$. O caso base $A[1] \leftarrow \{(0,0),(s_1,v_1)\}$ é válido. Agora suponha que seja válido para $A[j-1]$. Sendo $S \subseteq \{1, \ldots, j\}$, e $t=\sum_{i \in S} s_i \leq B$ e $w = \sum_{i \in S} v_i$. Afirmamos que existe um par $(t',w') \in A[j]$ que domina o par $(t,w)$.
 
 Avaliaremos em dois casos, no primeiro $j \neq S$. Neste caso, $A[j]$ conterá apenas $(t',w')$, pois $(t,j)$ é obtido de $A[j-1]$ mas removido na linha 9 do algoritmo \ref{alg:pdmochila}.
 
@@ -203,11 +203,11 @@ Precisamos mostrar que o algoritmo retorna uma solução cujo valor é pelo meno
 \section{Escalonamento de tarefas em máquinas paralelas idênticas}
 \label{sec:escalonamento}
 
-Achamos conveniente falar do problema em duas partes. Na primeira, apresentaremos duas aproximações constantes (Seção \ref{sec:escalonamentocte}). Em seguida, falamos de um esquema de aproximação combinado a programação dinâmica para resolvê-lo (Seção \ref{sec:escalonamentoptas}).
+Achamos conveniente falar do problema em duas partes. Na primeira, apresentaremos duas $\alpha$-aproximações (Seção \ref{sec:escalonamentocte}). Em seguida, falamos de um esquema de aproximação combinado a programação dinâmica para resolvê-lo (Seção \ref{sec:escalonamentoptas}).
 
 Falamos brevemente das definições que usaremos no restante desta seção. Temos como entrada para o problema $n$ tarefas e $m$ máquinas idênticas. Cada tarefa $j = 1, \ldots, n$ executa em tempo $p_j$ em apenas uma máquina sem interrupção. Cada máquina executa apenas uma tarefa por vez. 
 
-O objetivo é completar todas as tarefas o mais rápido possível. Definiremos como $c_j$ o tempo no qual a tarefa termina (Presumindo que o escalonamento inicia-se no tempo 0). Queremos então encontrar $c_{\max} = \max_{j = 1, \ldots, n} c_j$, o qual chamaremos de \textit{largura} da tarefa.
+O objetivo é completar todas as tarefas o mais rápido possível. Definiremos como $c_j$ o tempo no qual a tarefa termina (Presumindo que o escalonamento inicia-se no tempo 0). Queremos então encontrar $c_{\max} = \max_{j = 1, \ldots, n} c_j$, o qual chamaremos de \textit{largura} do escalonamento de tarefas.
 
 Para uma dada instância I do problema, a solução ótima, a qual rotineiramente chamamos de $OPT(I)$ será neste problema conhecida como $c_{\max}^*$.
 
@@ -515,8 +515,8 @@ Seus termos são:
 
 \begin{itemize}
 \item $x_t = (n_1, \ldots, n_{k^2})$ é o vetor de estados em um estágio (ou período de tempo) $t$, neste caso é o número de tarefas ainda não atribuídas.
-\item $F(x_t, x_{t+1}) = 1$ é o ganho para ir do estágio $t$ até o estágio $t+1$ a partir de $x_t$.
-\item $\Gamma(x_t) = \mathcal{C}$ é o conjunto de todos os estados possíveis de serem criados a partir de $x_t$, neste caso as configurações de máquina.
+\item $F(x_t, a_t) = 1$ é o ganho para ir do estágio $t$ até o estágio $t+1$ a partir de $x_t$ tomando a ação $a_t$.
+\item $\Gamma(x_t) = \mathcal{C}$ é o conjunto de todos as ações que podemos tomar no estado $x_t$, neste caso as configurações de máquina.
 \item $\delta = 1$ é o fator de desconto. Neste problema não há desconto.
 \end{itemize}
 
@@ -678,70 +678,71 @@ Para construir a instância $I'$ eliminamos os itens do primeiro grupo e para os
 
 \begin{figure}
 \centering
+\scalebox{1} % Change this value to rescale the drawing.
 {
-\begin{pspicture}(0,-5.1241665)(8.894931,5.1641665)
-\psframe[linewidth=0.04,dimen=outer](1.7509375,4.6491666)(1.4709375,1.0491667)
-\psframe[linewidth=0.04,dimen=outer](2.3059375,4.2891665)(2.0259376,1.0491667)
-\psframe[linewidth=0.04,dimen=outer](2.7959375,4.0691667)(2.5159376,1.0691667)
-\psframe[linewidth=0.04,dimen=outer](3.4259374,3.7291667)(3.1459374,1.0691667)
-\psframe[linewidth=0.04,dimen=outer](3.9759376,3.4891667)(3.6959374,1.0691667)
-\psframe[linewidth=0.04,dimen=outer](4.5159373,3.2291667)(4.2359376,1.0891666)
-\psframe[linewidth=0.04,dimen=outer](5.2859373,2.9291666)(5.0059376,1.0691667)
-\psframe[linewidth=0.04,dimen=outer](5.838594,2.8616667)(5.5585938,1.0691667)
-\psframe[linewidth=0.04,dimen=outer](6.3759375,2.7691667)(6.0959377,1.0831517)
-\psframe[linewidth=0.04,dimen=outer](7.1203823,2.3891666)(6.840382,1.0891666)
-\psframe[linewidth=0.04,dimen=outer](7.6459374,2.2718735)(7.3659377,1.0891666)
-\psframe[linewidth=0.04,dimen=outer](8.161938,2.277339)(7.881937,1.0989411)
-\psframe[linewidth=0.04,dimen=outer](8.741938,1.9891666)(8.461937,1.0789409)
-\psbezier[linewidth=0.04](2.172052,0.5431071)(2.1980376,1.1228231)(2.9766576,0.5342052)(2.907567,1.0749729)
-\psbezier[linewidth=0.04](2.1783874,0.54303706)(2.1410406,1.1434538)(1.3357686,0.5523595)(1.4250426,1.0713749)
-\psbezier[linewidth=0.04](3.8627605,0.5832292)(3.8883977,1.1632291)(4.6767373,0.5832292)(4.6062355,1.1232291)
-\psbezier[linewidth=0.04](3.86917,0.5832292)(3.8307142,1.1832291)(3.0167375,0.5832292)(3.1064672,1.1032292)
-\psbezier[linewidth=0.04](5.6818557,0.56310713)(5.7075253,1.1428231)(6.476658,0.55420524)(6.4084086,1.0949728)
-\psbezier[linewidth=0.04](5.688114,0.56303704)(5.651222,1.1634538)(4.8557625,0.5723595)(4.9439487,1.091375)
-\psbezier[linewidth=0.04](7.501856,0.5431071)(7.527525,1.1228231)(8.296658,0.5342052)(8.228409,1.0749729)
-\psbezier[linewidth=0.04](7.5081143,0.54303706)(7.4712224,1.1434538)(6.6757627,0.5523595)(6.763949,1.0713749)
-\psbezier[linewidth=0.04](8.610551,0.5431071)(8.61909,1.1228231)(8.874931,0.5342052)(8.852229,1.0749729)
-\psbezier[linewidth=0.04](8.612633,0.54303706)(8.600362,1.1434538)(8.335763,0.5523595)(8.365096,1.0713749)
-\usefont{T1}{ptm}{m}{n}
-\rput(2.1240625,0.23166667){G1}
-\usefont{T1}{ptm}{m}{n}
-\rput(3.8226562,0.31166667){G2}
-\usefont{T1}{ptm}{m}{n}
-\rput(5.66625,0.31166667){G3}
-\usefont{T1}{ptm}{m}{n}
-\rput(7.4504685,0.27166668){G4}
-\usefont{T1}{ptm}{m}{n}
-\rput(8.604844,0.27166668){G5}
-\psframe[linewidth=0.04,dimen=outer](3.1859374,-1.6908333)(2.9059374,-4.3508334)
-\psframe[linewidth=0.04,dimen=outer](3.7385938,-1.6983334)(3.4585938,-4.3508334)
-\psframe[linewidth=0.04,dimen=outer](4.2785935,-1.7183334)(3.9985938,-4.3308334)
-\psframe[linewidth=0.04,dimen=outer](5.0859375,-2.4208333)(4.8059373,-4.300833)
-\psframe[linewidth=0.04,dimen=outer](5.6385937,-2.4545834)(5.358594,-4.3345833)
-\psframe[linewidth=0.04,dimen=outer](6.166094,-2.437591)(5.8860936,-4.317591)
-\psframe[linewidth=0.04,dimen=outer](6.840382,-3.0008333)(6.560382,-4.320833)
-\psframe[linewidth=0.04,dimen=outer](7.3259373,-3.0194795)(7.0459375,-4.3394794)
-\psframe[linewidth=0.04,dimen=outer](7.841937,-3.0318599)(7.5619373,-4.35186)
-\psframe[linewidth=0.04,dimen=outer](8.3619375,-3.4308333)(8.081937,-4.341059)
-\rput(1.01625,1.0416666){\psaxes[linewidth=0.04,labels=none,ticks=y,ticksize=0.10583333cm](0,0)(0,0)(0,4)}
-\usefont{T1}{ptm}{m}{n}
-\rput(0.363125,2.0316668){0.25}
-\usefont{T1}{ptm}{m}{n}
-\rput(0.473125,3.0516667){0.5}
-\usefont{T1}{ptm}{m}{n}
-\rput(0.383125,4.011667){0.75}
-\usefont{T1}{ptm}{m}{n}
-\rput(0.494375,4.971667){1}
-\rput(0.99625,-4.4383335){\psaxes[linewidth=0.04,labels=none,ticks=y,ticksize=0.10583333cm](0,0)(0,0)(0,4)}
-\usefont{T1}{ptm}{m}{n}
-\rput(0.343125,-3.4483333){0.25}
-\usefont{T1}{ptm}{m}{n}
-\rput(0.453125,-2.4283333){0.5}
-\usefont{T1}{ptm}{m}{n}
-\rput(0.363125,-1.4683334){0.75}
-\usefont{T1}{ptm}{m}{n}
-\rput(0.594375,-0.48833334){1}
-\end{pspicture} 
+	\begin{pspicture}(0,-5.124167)(8.998821,5.164167)
+	\psframe[linewidth=0.04,dimen=outer](1.7740625,4.6491666)(1.4940625,1.0491666)
+	\psframe[linewidth=0.04,dimen=outer](2.3290625,4.2891665)(2.0490625,1.0491666)
+	\psframe[linewidth=0.04,dimen=outer](2.8190625,4.0691667)(2.5390625,1.0691667)
+	\psbezier[linewidth=0.04](2.195177,0.54310703)(2.2211626,1.122823)(2.9997826,0.53420514)(2.930692,1.0749729)
+	\psbezier[linewidth=0.04](2.2015123,0.543037)(2.1641655,1.1434537)(1.3588936,0.5523594)(1.4481676,1.0713748)
+	\psbezier[linewidth=0.04](3.8858855,0.5832291)(3.9115226,1.163229)(4.6998625,0.5832291)(4.6293607,1.123229)
+	\psbezier[linewidth=0.04](3.892295,0.5832291)(3.8538392,1.183229)(3.0398624,0.5832291)(3.1295922,1.1032292)
+	\psbezier[linewidth=0.04](5.5423107,0.5631071)(5.562926,1.142823)(6.180605,0.5542052)(6.125795,1.0949727)
+	\psbezier[linewidth=0.04](5.547337,0.563037)(5.5177093,1.1634537)(4.8788877,0.57235944)(4.9497085,1.0913749)
+	\psbezier[linewidth=0.04](7.264981,0.54310703)(7.2861357,1.122823)(7.92,0.53420514)(7.8637543,1.0749729)
+	\psbezier[linewidth=0.04](7.2712393,0.58303696)(7.2343473,1.1834537)(6.4388876,0.5923594)(6.527074,1.1113749)
+	\psbezier[linewidth=0.04](8.635611,0.54310703)(8.646695,1.122823)(8.978822,0.53420514)(8.94935,1.0749729)
+	\psbezier[linewidth=0.04](8.638313,0.543037)(8.622383,1.1434537)(8.278888,0.5523594)(8.316967,1.0713748)
+	\usefont{T1}{ptm}{m}{n}
+	\rput(2.125,0.23166658){G1}
+	\usefont{T1}{ptm}{m}{n}
+	\rput(3.8221874,0.31166658){G2}
+	\usefont{T1}{ptm}{m}{n}
+	\rput(5.529375,0.3316666){G3}
+	\usefont{T1}{ptm}{m}{n}
+	\rput(7.4578123,0.2716666){G4}
+	\usefont{T1}{ptm}{m}{n}
+	\rput(8.686563,0.2916666){G5}
+	\psframe[linewidth=0.04,dimen=outer](3.6490624,-1.7508334)(3.3690624,-4.4108334)
+	\psframe[linewidth=0.04,dimen=outer](4.001719,-1.7583334)(3.7217188,-4.4108334)
+	\psframe[linewidth=0.04,dimen=outer](5.661719,-2.5745835)(5.381719,-4.454583)
+	\psframe[linewidth=0.04,dimen=outer](7.2690625,-3.0994797)(6.9890623,-4.4194794)
+	\psframe[linewidth=0.04,dimen=outer](7.605062,-3.11186)(7.3250623,-4.43186)
+	\psframe[linewidth=0.04,dimen=outer](8.705063,-3.4508333)(8.425062,-4.361059)
+	\rput(1.039375,1.0416665){\psaxes[linewidth=0.04,labels=none,ticks=y,ticksize=0.10583333cm](0,0)(0,0)(0,4)}
+	\usefont{T1}{ptm}{m}{n}
+	\rput(0.363125,2.0316668){0.25}
+	\usefont{T1}{ptm}{m}{n}
+	\rput(0.473125,3.0516665){0.5}
+	\usefont{T1}{ptm}{m}{n}
+	\rput(0.383125,4.011667){0.75}
+	\usefont{T1}{ptm}{m}{n}
+	\rput(0.485625,4.971667){1}
+	\rput(1.019375,-4.4383335){\psaxes[linewidth=0.04,labels=none,ticks=y,ticksize=0.10583333cm](0,0)(0,0)(0,4)}
+	\usefont{T1}{ptm}{m}{n}
+	\rput(0.343125,-3.4483335){0.25}
+	\usefont{T1}{ptm}{m}{n}
+	\rput(0.453125,-2.4283333){0.5}
+	\usefont{T1}{ptm}{m}{n}
+	\rput(0.363125,-1.4683335){0.75}
+	\usefont{T1}{ptm}{m}{n}
+	\rput(0.585625,-0.48833343){1}
+	\psframe[linewidth=0.04,dimen=outer](5.2817187,-2.5745835)(5.001719,-4.454583)
+	\psframe[linewidth=0.04,dimen=outer](6.0417185,-2.5745835)(5.761719,-4.454583)
+	\psframe[linewidth=0.04,dimen=outer](4.3817186,-1.7583334)(4.101719,-4.4108334)
+	\psframe[linewidth=0.04,dimen=outer](6.9490623,-3.0994797)(6.6690626,-4.4194794)
+	\psframe[linewidth=0.04,dimen=outer](3.6690624,3.8291667)(3.3890624,1.1691666)
+	\psframe[linewidth=0.04,dimen=outer](4.021719,3.404167)(3.7417188,1.1691666)
+	\psframe[linewidth=0.04,dimen=outer](5.681719,2.824167)(5.401719,1.1254166)
+	\psframe[linewidth=0.04,dimen=outer](7.2890625,2.2841668)(7.0090623,1.1605206)
+	\psframe[linewidth=0.04,dimen=outer](7.625062,2.204167)(7.3450623,1.14814)
+	\psframe[linewidth=0.04,dimen=outer](8.725062,2.1291666)(8.445062,1.218941)
+	\psframe[linewidth=0.04,dimen=outer](5.3017187,3.0054166)(5.021719,1.1254166)
+	\psframe[linewidth=0.04,dimen=outer](6.0617185,2.684167)(5.781719,1.1254166)
+	\psframe[linewidth=0.04,dimen=outer](4.4017186,3.2241669)(4.121719,1.1691666)
+	\psframe[linewidth=0.04,dimen=outer](6.9690623,2.4805205)(6.6890626,1.1605206)
+	\end{pspicture} 
 }
 \label{fig:binpacking}
 \caption{Agrupamento linear em instância do problema do empacotamento. Agrupamos os itens em grupos de $k$ itens (Neste caso $k=3$), eliminamos os itens do primeiro grupo e para cada grupo, alteramos os tamanhos dos itens menores para o tamanho do maior item. Esta imagem é baseada em uma obtida em \cite{Williamson}}
@@ -822,10 +823,10 @@ Vamos definir a configuração de caixa  $ \mathcal{C} $ como o conjunto de toda
 Então $ \mathcal{C} $ contém todas as configurações de empacotamento possíveis em uma caixa. Agora é possível aplicar um algoritmo de programação dinâmica idêntico ao que usamos para o do escalonamento de máquinas, representado pela equação de \textit{Bellmann} abaixo:
 
 \begin{equation}
-OPT(n_1, \ldots, n_{k^2}) = 1 + \min_{(s1,\ldots,s_{k^2}) \in \mathcal{C}} OPT(n_1 - s_1, \ldots, n_{k^2} - s_{k^2})
+OPT(n_1, \ldots, n_i, \ldots, n_{n/k}) = 1 + \min_{(s1,\ldots,s_{n/k}) \in \mathcal{C}} OPT(n_1 - s_1, \ldots, n_{n/k} - s_{n/k})
 \end{equation}
 
-Onde $(n_1, \ldots, n_{k^2})$ é nosso vetor de estados contendo o número de peças $n_i \leq k, 1 \leq i \leq n/k$ para a instância modificada $i$.
+Onde $(n_1, \ldots, n_i, \ldots, n_{n/k})$ é nosso vetor de estados contendo o número de peças $n_i \leq k, 1 \leq i \leq n/k$ para a instância modificada $i$.
 
 Este algoritmo é idêntico ao que usamos para resolver o problema do escalonamento de tarefas em máquinas paralelas.
 
@@ -878,34 +879,36 @@ L \leq OPT(I)
 Para fazer a instância ``boa'', criamos uma grade de linhas horizontais e verticais onde o espaço entre elas é igual a $\epsilon L/2n$. Movemos então cada ponto para o ponto de grade (formado pela intersecção entre as linhas horizontais e verticais, como na figura \ref{fig:etspdissc}) mais próximo. Como movemos estes pontos, por uma distância não maior à $\epsilon L / 2 n$ então a distância entre dois pontos quaisquer muda por no máximo $ \pm 2 \epsilon L / 2 n  $. Assim, para uma determinada rota, seu custo aumenta em no máximo $\pm \epsilon L$.
 
 \begin{figure}
-\scalebox{1} % Change this value to rescale the drawing.
+\scalebox{1.4} % Change this value to rescale the drawing.
 {
-	\begin{pspicture}(0,-2.36)(3.781875,2.36)
+	\begin{pspicture}(0,-4.28)(6.56,4.28)
 	\definecolor{color6546c}{rgb}{0.5019607843137255,0.5019607843137255,0.5019607843137255}
-	\rput(1.781875,0.32){\psgrid[gridwidth=0.028222222,subgridwidth=0.014111111,gridlabels=0.0pt,subgridcolor=color6546c](0,0)(0,0)(2,2)}
-	\psdots[dotsize=0.081999995](1.921875,2.24)
-	\psdots[dotsize=0.081999995](2.021875,1.6)
-	\psdots[dotsize=0.081999995](2.541875,1.42)
-	\rput(1.781875,-2.32){\psgrid[gridwidth=0.028222222,subgridwidth=0.014111111,gridlabels=0.0pt,subgridcolor=color6546c](0,0)(0,0)(2,2)}
-	\psdots[dotsize=0.081999995](1.981875,-0.32)
-	\psdots[dotsize=0.081999995](1.981875,-1.12)
-	\psdots[dotsize=0.081999995](2.381875,-1.12)
-	\psbezier[linewidth=0.04](1.6247028,-0.8298055)(1.7572962,-0.83444506)(1.6247028,-0.9771115)(1.7481519,-0.9643527)
-	\psbezier[linewidth=0.04](1.6247028,-0.8309654)(1.7618685,-0.824006)(1.6247028,-0.6767)(1.7435797,-0.69293845)
-	\psbezier[linewidth=0.04](1.6247028,-0.8298055)(1.7572962,-0.83444506)(1.6247028,-0.9771115)(1.7481519,-0.9643527)
-	\psbezier[linewidth=0.04](1.6247028,-0.8309654)(1.7618685,-0.824006)(1.6247028,-0.6767)(1.7435797,-0.69293845)
-	\psbezier[linewidth=0.04](1.6247028,-0.8298055)(1.7572962,-0.83444506)(1.6247028,-0.9771115)(1.7481519,-0.9643527)
-	\psbezier[linewidth=0.04](1.6247028,-0.8309654)(1.7618685,-0.824006)(1.6247028,-0.6767)(1.7435797,-0.69293845)
+	\psbezier[linewidth=0.04](2.302984,2.8501947)(2.4355774,2.8455548)(2.302984,2.7028885)(2.426433,2.7156472)
+	\psbezier[linewidth=0.04](2.302984,2.8490348)(2.4401498,2.855994)(2.302984,3.0033002)(2.421861,2.9870615)
+	\psbezier[linewidth=0.04](2.302984,2.8501947)(2.4355774,2.8455548)(2.302984,2.7028885)(2.426433,2.7156472)
+	\psbezier[linewidth=0.04](2.302984,2.8490348)(2.4401498,2.855994)(2.302984,3.0033002)(2.421861,2.9870615)
+	\psbezier[linewidth=0.04](2.302984,2.8501947)(2.4355774,2.8455548)(2.302984,2.7028885)(2.426433,2.7156472)
+	\psbezier[linewidth=0.04](2.302984,2.8490348)(2.4401498,2.855994)(2.302984,3.0033002)(2.421861,2.9870615)
 	\usefont{T1}{ptm}{m}{n}
-	\rput(0.95359373,-0.83){\tiny $\epsilon L / 2 n$}
-	\psbezier[linewidth=0.04](1.5847027,1.6101946)(1.7172962,1.6055549)(1.5847027,1.4628885)(1.7081519,1.4756473)
-	\psbezier[linewidth=0.04](1.5847027,1.6090347)(1.7218684,1.615994)(1.5847027,1.7633001)(1.7035797,1.7470615)
-	\psbezier[linewidth=0.04](1.5847027,1.6101946)(1.7172962,1.6055549)(1.5847027,1.4628885)(1.7081519,1.4756473)
-	\psbezier[linewidth=0.04](1.5847027,1.6090347)(1.7218684,1.615994)(1.5847027,1.7633001)(1.7035797,1.7470615)
-	\psbezier[linewidth=0.04](1.5847027,1.6101946)(1.7172962,1.6055549)(1.5847027,1.4628885)(1.7081519,1.4756473)
-	\psbezier[linewidth=0.04](1.5847027,1.6090347)(1.7218684,1.615994)(1.5847027,1.7633001)(1.7035797,1.7470615)
+	\rput(1.1335938,2.83){\tiny $\epsilon L / 2 n$}
+	\rput(2.56,0.24){\psgrid[gridwidth=0.028222222,subgridwidth=0.014111111,gridlabels=0.0pt,unit=2.0cm,subgridcolor=color6546c](0,0)(0,0)(2,2)
+		\psset{unit=1.0cm}}
+	\rput(2.54,-4.24){\psgrid[gridwidth=0.028222222,subgridwidth=0.014111111,gridlabels=0.0pt,unit=2.0cm,subgridcolor=color6546c](0,0)(0,0)(2,2)
+		\psset{unit=1.0cm}}
 	\usefont{T1}{ptm}{m}{n}
-	\rput(0.95359373,1.59){\tiny $\epsilon L / 2 n$}
+	\rput(0.95359373,-1.63){\tiny $\epsilon L / 2 n$}
+	\psbezier[linewidth=0.04](2.202984,-1.6298054)(2.3355775,-1.6344451)(2.202984,-1.7771115)(2.3264332,-1.7643527)
+	\psbezier[linewidth=0.04](2.202984,-1.6309654)(2.3401499,-1.624006)(2.202984,-1.4767)(2.321861,-1.4929384)
+	\psbezier[linewidth=0.04](2.202984,-1.6298054)(2.3355775,-1.6344451)(2.202984,-1.7771115)(2.3264332,-1.7643527)
+	\psbezier[linewidth=0.04](2.202984,-1.6309654)(2.3401499,-1.624006)(2.202984,-1.4767)(2.321861,-1.4929384)
+	\psbezier[linewidth=0.04](2.202984,-1.6298054)(2.3355775,-1.6344451)(2.202984,-1.7771115)(2.3264332,-1.7643527)
+	\psbezier[linewidth=0.04](2.202984,-1.6309654)(2.3401499,-1.624006)(2.202984,-1.4767)(2.321861,-1.4929384)
+	\psdots[dotsize=0.12](3.26,2.78)
+	\psdots[dotsize=0.12](3.84,1.78)
+	\psdots[dotsize=0.12](5.02,2.96)
+	\psdots[dotsize=0.12](3.36,-1.86)
+	\psdots[dotsize=0.12](3.76,-2.64)
+	\psdots[dotsize=0.12](4.96,-1.46)
 	\end{pspicture} 
 }
 \centering

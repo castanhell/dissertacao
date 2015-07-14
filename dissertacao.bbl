@@ -11,6 +11,11 @@ Sanjeev Arora.
   salesman and other geometric problems.
 \newblock {\em Journal of the ACM (JACM)}, 45(5):753--782, 1998.
 
+\bibitem{Arora}
+Sanjeev Arora, Carsten Lund, Rajeev Motwani, Madhu Sudan, e Mario Szegedy.
+\newblock Proof verification and the hardness of approximation problems.
+\newblock {\em J. ACM}, 45(3):501--555, maio de 1998.
+
 \bibitem{bellman1952theory}
 Richard Bellman.
 \newblock On the theory of dynamic programming.
@@ -149,6 +154,11 @@ University of~Waterloo.
 Stefan Ropke.
 \newblock Heuristic and exact algorithms for vehicle routing problems.
 \newblock 2005.
+
+\bibitem{vignattiaulas}
+André Vignatti.
+\newblock Análise de algoritmos.
+\newblock http://www.inf.ufpr.br/vignatti/courses/old/ci165-2013-2.html, 2013.
 
 \bibitem{Vignatti}
 André~Luís Vignatti.
